@@ -1,0 +1,11 @@
+D:\DataProjects\C#\winform-timekeeping-management\winform-project\bin\Debug\winform-project.exe.config
+D:\DataProjects\C#\winform-timekeeping-management\winform-project\bin\Debug\winform-project.exe
+D:\DataProjects\C#\winform-timekeeping-management\winform-project\bin\Debug\winform-project.pdb
+D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform-project.csprojAssemblyReference.cache
+D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform_project.FrmMain.resources
+D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform_project.Properties.Resources.resources
+D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform-project.csproj.GenerateResource.cache
+D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform-project.csproj.CoreCompileInputs.cache
+D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform-project.exe
+D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform-project.pdb
+D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform_project.FrmLogin.resources
