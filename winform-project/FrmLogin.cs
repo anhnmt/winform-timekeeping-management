@@ -21,5 +21,10 @@ namespace winform_project
         {
 
         }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
