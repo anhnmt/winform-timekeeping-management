@@ -19,7 +19,13 @@ namespace winform_project
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            var email = txtAccount.Text;
+            var password = txtPassword.Text;
 
+            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Tài khoản hoặc mật khẩu không được để trống!");
+            }
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)
