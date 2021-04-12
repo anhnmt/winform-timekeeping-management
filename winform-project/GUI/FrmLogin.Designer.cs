@@ -35,9 +35,9 @@ namespace winform_project
             this.btnLogin = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtPassword = new winform_project.Validates.TextboxValidate();
             this.lblLogin = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txtPassword = new winform_project.Validates.TextboxValidate();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -106,6 +106,18 @@ namespace winform_project
             this.panel3.Size = new System.Drawing.Size(387, 398);
             this.panel3.TabIndex = 8;
             // 
+            // txtPassword
+            // 
+            this.txtPassword.FieldName = null;
+            this.txtPassword.Location = new System.Drawing.Point(127, 198);
+            this.txtPassword.MaxLength = 0;
+            this.txtPassword.MinLength = 0;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = null;
+            this.txtPassword.Pattern = null;
+            this.txtPassword.Size = new System.Drawing.Size(218, 46);
+            this.txtPassword.TabIndex = 7;
+            // 
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
@@ -125,13 +137,6 @@ namespace winform_project
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(127, 213);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(218, 28);
-            this.txtPassword.TabIndex = 7;
             // 
             // FrmLogin
             // 

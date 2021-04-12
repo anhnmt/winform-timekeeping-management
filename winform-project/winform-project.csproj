@@ -49,10 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataClasses.designer.cs">
+    <Compile Include="Timekeeping.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataClasses.dbml</DependentUpon>
+      <DependentUpon>Timekeeping.dbml</DependentUpon>
     </Compile>
     <Compile Include="GUI\FrmLogin.cs">
       <SubType>Form</SubType>
@@ -93,13 +93,13 @@
     <EmbeddedResource Include="Validates\TextboxValidate.resx">
       <DependentUpon>TextboxValidate.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DataClasses.dbml">
+    <None Include="Timekeeping.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataClasses.designer.cs</LastGenOutput>
+      <LastGenOutput>Timekeeping.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataClasses.dbml.layout">
-      <DependentUpon>DataClasses.dbml</DependentUpon>
+    <None Include="Timekeeping.dbml.layout">
+      <DependentUpon>Timekeeping.dbml</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

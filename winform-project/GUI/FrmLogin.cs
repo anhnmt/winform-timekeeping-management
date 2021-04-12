@@ -12,6 +12,8 @@ namespace winform_project
 {
     public partial class FrmLogin : Form
     {
+        static TimekeepingDataContext tdc = new TimekeepingDataContext();
+
         public FrmLogin()
         {
             InitializeComponent();
@@ -22,11 +24,23 @@ namespace winform_project
             var email = txtAccount.Text;
             var password = txtPassword.Text;
 
-            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
+            var Employee = tdc.Employees.FirstOrDefault(x => x.email == email);
+
+            if (Employee != null)
             {
-                MessageBox.Show("Tài khoản hoặc mật khẩu không được để trống!");
+                if (Employee.password == password)
+                {
+                    FrmMain frmMain = new FrmMain();
+                    frmMain.Show();
+                    this.Hide();
+                }
+                //else txtPassword.Label = "Mật khẩu không chính xác";
             }
-        }
+                //if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
+                //{
+                //    MessageBox.Show("Tài khoản hoặc mật khẩu không được để trống!");
+                //}
+            }
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
