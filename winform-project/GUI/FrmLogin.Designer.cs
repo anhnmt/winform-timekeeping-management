@@ -29,17 +29,21 @@ namespace winform_project
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.txtAccount = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtAccount = new winform_project.Validates.TextboxValidate();
             this.txtPassword = new winform_project.Validates.TextboxValidate();
             this.lblLogin = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -54,26 +58,18 @@ namespace winform_project
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(40, 213);
+            this.lblPassword.Location = new System.Drawing.Point(40, 228);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(52, 13);
             this.lblPassword.TabIndex = 1;
             this.lblPassword.Text = "Mật khẩu";
             // 
-            // txtAccount
-            // 
-            this.txtAccount.Location = new System.Drawing.Point(127, 172);
-            this.txtAccount.Name = "txtAccount";
-            this.txtAccount.Size = new System.Drawing.Size(218, 20);
-            this.txtAccount.TabIndex = 2;
-            this.txtAccount.WordWrap = false;
-            // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(270, 247);
+            this.btnLogin.Location = new System.Drawing.Point(270, 277);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
-            this.btnLogin.TabIndex = 4;
+            this.btnLogin.TabIndex = 6;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -94,11 +90,11 @@ namespace winform_project
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.txtAccount);
             this.panel3.Controls.Add(this.txtPassword);
             this.panel3.Controls.Add(this.lblLogin);
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Controls.Add(this.lblUsername);
-            this.panel3.Controls.Add(this.txtAccount);
             this.panel3.Controls.Add(this.btnLogin);
             this.panel3.Controls.Add(this.lblPassword);
             this.panel3.Location = new System.Drawing.Point(210, 68);
@@ -106,17 +102,29 @@ namespace winform_project
             this.panel3.Size = new System.Drawing.Size(387, 398);
             this.panel3.TabIndex = 8;
             // 
+            // txtAccount
+            // 
+            this.txtAccount.FieldName = null;
+            this.txtAccount.Location = new System.Drawing.Point(127, 176);
+            this.txtAccount.MaxLength = 0;
+            this.txtAccount.MinLength = 0;
+            this.txtAccount.Name = "txtAccount";
+            this.txtAccount.PasswordChar = null;
+            this.txtAccount.Pattern = null;
+            this.txtAccount.Size = new System.Drawing.Size(218, 46);
+            this.txtAccount.TabIndex = 4;
+            // 
             // txtPassword
             // 
             this.txtPassword.FieldName = null;
-            this.txtPassword.Location = new System.Drawing.Point(127, 198);
+            this.txtPassword.Location = new System.Drawing.Point(127, 228);
             this.txtPassword.MaxLength = 0;
             this.txtPassword.MinLength = 0;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = null;
             this.txtPassword.Pattern = null;
             this.txtPassword.Size = new System.Drawing.Size(218, 46);
-            this.txtPassword.TabIndex = 7;
+            this.txtPassword.TabIndex = 5;
             // 
             // lblLogin
             // 
@@ -146,6 +154,7 @@ namespace winform_project
             this.ClientSize = new System.Drawing.Size(800, 504);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmLogin";
@@ -153,6 +162,7 @@ namespace winform_project
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -161,12 +171,13 @@ namespace winform_project
 
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.TextBox txtAccount;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Validates.TextboxValidate txtPassword;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private Validates.TextboxValidate txtAccount;
     }
 }

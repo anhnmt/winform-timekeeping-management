@@ -12,6 +12,14 @@ namespace winform_project.Validates
         public int MinLength { get; set; }
         public int MaxLength { get; set; }
         public string Pattern { get; set; }
+        public TextBox TextBox
+        {
+            get { return txtField; }
+        }
+        public string Label
+        {
+            set { this.lblError.Text = value; }
+        }
 
         public TextboxValidate()
         {

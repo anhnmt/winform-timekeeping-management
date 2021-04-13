@@ -27,7 +27,7 @@ namespace winform_project.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost,1433;Initial Catalog=Timekeeping;Persist Security Info=True" +
-            ";User ID=sa;Password=1234$")]
+            ";User ID=sa;Password=123456a@")]
         public string TimekeepingConnectionString {
             get {
                 return ((string)(this["TimekeepingConnectionString"]));
