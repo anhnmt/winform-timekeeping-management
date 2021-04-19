@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using winform_project.GUI.Employee;
 
 namespace winform_project
 {
@@ -15,6 +16,41 @@ namespace winform_project
         public FrmMain()
         {
             InitializeComponent();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Bạn muốn chắc muốn đăng xuất?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnEmployee_Click(object sender, EventArgs e)
+        {
+            panelRight.Controls.Clear();
+            EmployeeList employeeList = new EmployeeList();
+            employeeList.TopLevel = false;
+            employeeList.Dock = DockStyle.Fill;
+            employeeList.Show();
+            panelRight.Controls.Add(employeeList);
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnScheduler_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

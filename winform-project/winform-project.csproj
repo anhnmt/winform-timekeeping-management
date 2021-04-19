@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>winform_project</RootNamespace>
     <AssemblyName>winform-project</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -29,6 +29,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -68,6 +69,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\Employee\EmployeeDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Employee\EmployeeDetail.Designer.cs">
+      <DependentUpon>EmployeeDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Employee\EmployeeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Employee\EmployeeList.Designer.cs">
+      <DependentUpon>EmployeeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Timekeeping.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,6 +106,9 @@
     <Compile Include="Validates\TextboxValidate.Designer.cs">
       <DependentUpon>TextboxValidate.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\Employee\EmployeeList.resx">
+      <DependentUpon>EmployeeList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +128,9 @@
     <EmbeddedResource Include="Validates\TextboxValidate.resx">
       <DependentUpon>TextboxValidate.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App - Copy %282%29.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Timekeeping.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Timekeeping.designer.cs</LastGenOutput>
@@ -131,12 +150,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="GUI\Department\" />
+    <Folder Include="GUI\Schedule\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>

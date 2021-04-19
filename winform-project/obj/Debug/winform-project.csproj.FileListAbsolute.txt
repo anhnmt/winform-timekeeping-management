@@ -10,3 +10,16 @@ D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winf
 D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform-project.csproj.CoreCompileInputs.cache
 D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform-project.exe
 D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform-project.pdb
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\obj\Debug\winform-project.csprojAssemblyReference.cache
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\obj\Debug\winform_project.FrmLogin.resources
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\obj\Debug\winform_project.FrmMain.resources
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\obj\Debug\winform_project.Properties.Resources.resources
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\obj\Debug\winform_project.Validates.TextboxValidate.resources
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\obj\Debug\winform-project.csproj.GenerateResource.cache
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\obj\Debug\winform-project.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\bin\Debug\winform-project.exe.config
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\bin\Debug\winform-project.exe
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\bin\Debug\winform-project.pdb
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\obj\Debug\winform-project.exe
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\obj\Debug\winform-project.pdb
+C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\obj\Debug\winform_project.GUI.Employee.EmployeeList.resources
