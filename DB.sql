@@ -323,7 +323,7 @@ BEGIN TRY
 
                 -- Thưởng công ngày nghỉ, lễ hoặc cuối tuần
                 IF @_is_holiday = 1 OR @_is_weekend = 1
-                    SET @_workday = @_workday + 0.5
+                    SET @_workday = @_workday + 1
 
                 -- Trừ công đi muộn
                 IF @_hour_work_late > 0

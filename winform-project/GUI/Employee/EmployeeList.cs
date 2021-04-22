@@ -33,11 +33,11 @@ namespace winform_project.GUI.Employee
                                          EmployeeName = emp.name,
                                          Email = emp.email,
                                          Phone = emp.phone,
-                                         Department = emp.Department.name,
+                                         Position = emp.Position.name,
                                          Gender = emp.gender == true ? "Nam" : "Nữ",
                                          Address = emp.address,
                                          Birthday = emp.birthday,
-                                         Salary = emp.salary
+                                         Salary = emp.Position.basic_salary
                                      };
         }
 

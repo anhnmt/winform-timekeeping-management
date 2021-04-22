@@ -81,6 +81,12 @@
     <Compile Include="GUI\Employee\EmployeeList.Designer.cs">
       <DependentUpon>EmployeeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Schedule\EmployeeSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Schedule\EmployeeSchedule.Designer.cs">
+      <DependentUpon>EmployeeSchedule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Timekeeping.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Schedule\EmployeeSchedule.resx">
+      <DependentUpon>EmployeeSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -156,8 +165,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GUI\Department\" />
-    <Folder Include="GUI\Schedule\" />
+    <Folder Include="GUI\Position\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>

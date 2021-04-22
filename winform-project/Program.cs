@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using winform_project.GUI.Schedule;
 
 namespace winform_project
 {
@@ -18,6 +19,7 @@ namespace winform_project
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FrmLogin());
             Application.Run(new FrmMain());
+            //Application.Run(new EmlpoyeeSchedule());
         }
     }
 }

@@ -1,1 +1,69 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Timekeeping" Class="TimekeepingDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost,1433;Initial Catalog=Timekeeping;Persist Security Info=True;User ID=sa" SettingsObjectName="winform_project.Properties.Settings" SettingsPropertyName="TimekeepingConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Employees" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="birthday" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="coefficients_salary" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="avatar" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="position_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Employee_Schedule" Member="Schedules" ThisKey="employee_id" OtherKey="employee_id" Type="Schedule" />
+      <Association Name="Employee_Salary" Member="Salaries" ThisKey="employee_id" OtherKey="employee_id" Type="Salary" />
+      <Association Name="Position_Employee" Member="Position" ThisKey="position_id" OtherKey="position_id" Type="Position" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Holidays" Member="Holidays">
+    <Type Name="Holiday">
+      <Column Name="holiday_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="start_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="end_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Schedules" Member="Schedules">
+    <Type Name="Schedule">
+      <Column Name="schedule_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="working_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="is_holiday" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="is_weekend" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="workday" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="employee_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Schedule_Salary" Member="Salaries" ThisKey="schedule_id" OtherKey="schedule_id" Type="Salary" />
+      <Association Name="Schedule_ScheduleDetail" Member="ScheduleDetails" ThisKey="schedule_id" OtherKey="schedule_id" Type="ScheduleDetail" />
+      <Association Name="Employee_Schedule" Member="Employee" ThisKey="employee_id" OtherKey="employee_id" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Positions" Member="Positions">
+    <Type Name="Position">
+      <Column Name="position_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="basic_salary" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Position_Employee" Member="Employees" ThisKey="position_id" OtherKey="position_id" Type="Employee" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Salaries" Member="Salaries">
+    <Type Name="Salary">
+      <Column Name="employee_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="schedule_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Employee_Salary" Member="Employee" ThisKey="employee_id" OtherKey="employee_id" Type="Employee" IsForeignKey="true" />
+      <Association Name="Schedule_Salary" Member="Schedule" ThisKey="schedule_id" OtherKey="schedule_id" Type="Schedule" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ScheduleDetails" Member="ScheduleDetails">
+    <Type Name="ScheduleDetail">
+      <Column Name="schedule_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="start_work_hour" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="end_work_hour" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="hour_work_late" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hour_leave_early" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Schedule_ScheduleDetail" Member="Schedule" ThisKey="schedule_id" OtherKey="schedule_id" Type="Schedule" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

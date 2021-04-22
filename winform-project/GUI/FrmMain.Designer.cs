@@ -149,6 +149,7 @@ namespace winform_project
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMain";
             this.Text = "PHẦN MỀM CHẤM CÔNG";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxAvatar)).EndInit();
             this.ResumeLayout(false);

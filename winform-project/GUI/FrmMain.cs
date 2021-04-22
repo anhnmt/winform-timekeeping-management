@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using winform_project.GUI.Employee;
+using winform_project.GUI.Schedule;
 
 namespace winform_project
 {
@@ -45,12 +46,23 @@ namespace winform_project
 
         private void btnScheduler_Click(object sender, EventArgs e)
         {
-
+            panelRight.Controls.Clear();
+            EmployeeSchedule emlpoyeeSchedule = new EmployeeSchedule();
+            emlpoyeeSchedule.TopLevel = false;
+            emlpoyeeSchedule.Dock = DockStyle.Fill;
+            emlpoyeeSchedule.Show();
+            panelRight.Controls.Add(emlpoyeeSchedule);
         }
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }
