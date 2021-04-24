@@ -391,6 +391,43 @@ EXEC sp_loadSchedule @_employee_id = 2
 
 GO
 
+-- First Day OF CURRENT MONTH.
+SELECT DATEADD(D, -(DAY(GETDATE() - 1)), GETDATE())
+
+-- LAST DAY OF CURRENT MONTH.
+SELECT DATEADD(D, -(DAY(DATEADD(M, 1, GETDATE()))), DATEADD(M, 1, GETDATE()))
+
+-- Procedure lịch sử chấm công theo nhân viên
+CREATE PROC sp_getAllSchedulesByEmployeeId(
+    @_employee_id int,
+    @_working_month date = NULL
+)
+AS
+BEGIN
+    SET @_working_month = CONVERT(DATETIME, ISNULL(@_working_month, GETDATE()))
+
+    DECLARE
+        -- Lấy ngày đầu tiên của tháng
+        @_FirstDayOfCurrentMonth DATE = CONVERT(DATE, DATEADD(MM, DATEDIFF(MM, 0, @_working_month), 0)),
+        -- Lấy ngày cuối cùng của tháng
+        @_LastDayOfCurrentMonth DATE = CONVERT(DATE,
+                DATEADD(DD, -1, DATEADD(MM, DATEDIFF(MM, 0, @_working_month) + 1, 0)))
+
+    PRINT @_FirstDayOfCurrentMonth
+    PRINT @_LastDayOfCurrentMonth
+    SELECT *
+    FROM Schedules
+    WHERE employee_id = @_employee_id
+      AND working_date >= @_FirstDayOfCurrentMonth
+      AND working_date <= @_LastDayOfCurrentMonth
+END
+
+GO
+
+EXEC sp_getAllSchedulesByEmployeeId @_employee_id = 2, @_working_month = '2021-04-01'
+
+GO
+
 -- Bảng Approvals (Đơn từ)
 CREATE TABLE Approvals
 (

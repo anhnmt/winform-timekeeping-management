@@ -119,6 +119,7 @@
             this.Salary,
             this.Password});
             this.dgvEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEmployee.GridColor = System.Drawing.Color.White;
             this.dgvEmployee.Location = new System.Drawing.Point(0, 58);
             this.dgvEmployee.MultiSelect = false;
             this.dgvEmployee.Name = "dgvEmployee";

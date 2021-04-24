@@ -108,9 +108,9 @@ namespace winform_project
             this.txtAccount.Location = new System.Drawing.Point(127, 176);
             this.txtAccount.MaxLength = 0;
             this.txtAccount.MinLength = 0;
-            this.txtAccount.Name = "txtAccount";
-            this.txtAccount.PasswordChar = null;
-            this.txtAccount.Pattern = null;
+            this.txtAccount.Name = "Tài khoản";
+            this.txtAccount.PasswordChar = '\0';
+            this.txtAccount.Pattern = @"^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$";
             this.txtAccount.Size = new System.Drawing.Size(218, 46);
             this.txtAccount.TabIndex = 4;
             // 
@@ -120,8 +120,8 @@ namespace winform_project
             this.txtPassword.Location = new System.Drawing.Point(127, 228);
             this.txtPassword.MaxLength = 0;
             this.txtPassword.MinLength = 0;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = null;
+            this.txtPassword.Name = "Mật khẩu";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Pattern = null;
             this.txtPassword.Size = new System.Drawing.Size(218, 46);
             this.txtPassword.TabIndex = 5;

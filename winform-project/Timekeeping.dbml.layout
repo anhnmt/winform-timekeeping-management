@@ -32,21 +32,21 @@
         <elementListCompartment Id="22b67e80-ab39-4341-9770-1f8db3f77db8" absoluteBounds="0.765, 3.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 2.51044840494792); (6.25 : 2.51044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 2.51044840494792); (6.25 : 2.51044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TimekeepingDataContext/Employee/Employee_Approval" />
       <nodes>
         <classShapeMoniker Id="2ea0f5dc-319d-44b8-a425-3cf3f4f8591d" />
         <classShapeMoniker Id="1cf91297-fd90-4272-bd47-822e855fd0ee" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 4.43350341796875); (6.25 : 4.43350341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 4.43350341796875); (6.25 : 4.43350341796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TimekeepingDataContext/Employee/Employee_Schedule" />
       <nodes>
         <classShapeMoniker Id="2ea0f5dc-319d-44b8-a425-3cf3f4f8591d" />
         <classShapeMoniker Id="b82a1169-e2cf-4f62-bd1b-d66e791ff7ee" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.69314697265625); (3.5 : 3.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 3.69314697265625); (3.5 : 3.69314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TimekeepingDataContext/Position/Position_Employee" />
       <nodes>
         <classShapeMoniker Id="54eb809d-b43f-47cc-9a41-e1fa6e3c11a0" />

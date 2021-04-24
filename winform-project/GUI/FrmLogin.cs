@@ -13,9 +13,11 @@ namespace winform_project
     public partial class FrmLogin : Form
     {
         static TimekeepingDataContext tdc = new TimekeepingDataContext();
+        FrmMain formOut;
 
-        public FrmLogin()
+        public FrmLogin(FrmMain formIn)
         {
+            formOut = formIn;
             InitializeComponent();
         }
 
@@ -28,12 +30,11 @@ namespace winform_project
 
             if (Employee != null)
             {
-                MessageBox.Show(Employee.password);
                 if (Employee.password.Equals(password))
                 {
-                    FrmMain frmMain = new FrmMain();
-                    frmMain.Show();
-                    this.Hide();
+                    Console.WriteLine("UserId : " + Employee.employee_id);
+                    formOut.Employee = Employee;
+                    this.Close();
                 }
                 else txtPassword.Label = "Mật khẩu không chính xác";
             }
@@ -41,7 +42,9 @@ namespace winform_project
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-
+            //txtAccount.TextBox.Text = "sa@gmail.com";
+            txtAccount.TextBox.Text = "admin@gmail.com";
+            txtPassword.TextBox.Text = "123456";
         }
     }
 }

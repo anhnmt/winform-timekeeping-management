@@ -26,7 +26,6 @@ C:\Users\ADMIN\Downloads\winform-timekeeping-management\winform-project\obj\Debu
 F:\DataProject\C#\winform-timekeeping-management\winform-project\bin\Debug\winform-project.exe.config
 F:\DataProject\C#\winform-timekeeping-management\winform-project\bin\Debug\winform-project.exe
 F:\DataProject\C#\winform-timekeeping-management\winform-project\bin\Debug\winform-project.pdb
-F:\DataProject\C#\winform-timekeeping-management\winform-project\obj\Debug\winform-project.csprojAssemblyReference.cache
 F:\DataProject\C#\winform-timekeeping-management\winform-project\obj\Debug\winform_project.GUI.Employee.EmployeeList.resources
 F:\DataProject\C#\winform-timekeeping-management\winform-project\obj\Debug\winform_project.FrmLogin.resources
 F:\DataProject\C#\winform-timekeeping-management\winform-project\obj\Debug\winform_project.FrmMain.resources

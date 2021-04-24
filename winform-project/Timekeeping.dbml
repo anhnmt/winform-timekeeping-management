@@ -100,4 +100,20 @@
     <Parameter Name="_outMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.sp_getAllSchedulesByEmployeeId" Method="sp_getAllSchedulesByEmployeeId">
+    <Parameter Name="_employee_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_working_month" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="sp_getAllSchedulesByEmployeeIdResult">
+      <Column Name="schedule_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="working_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="is_holiday" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="is_weekend" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="workday" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="start_work_hour" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="end_work_hour" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="hour_work_late" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hour_leave_early" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="employee_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

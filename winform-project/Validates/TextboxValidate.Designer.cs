@@ -47,7 +47,6 @@ namespace winform_project.Validates
             this.txtField.Dock = System.Windows.Forms.DockStyle.Top;
             this.txtField.Location = new System.Drawing.Point(0, 0);
             this.txtField.Name = "txtField";
-            this.txtField.PasswordChar = '*';
             this.txtField.Size = new System.Drawing.Size(283, 20);
             this.txtField.TabIndex = 1;
             this.txtField.Validating += new System.ComponentModel.CancelEventHandler(this.txtField_Validating);

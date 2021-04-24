@@ -7,7 +7,7 @@ namespace winform_project.Validates
 {
     public partial class TextboxValidate : UserControl
     {
-        public string PasswordChar { get; set; }
+        public char PasswordChar { get; set; }
         public string FieldName { get; set; }
         public int MinLength { get; set; }
         public int MaxLength { get; set; }
@@ -24,9 +24,9 @@ namespace winform_project.Validates
         public TextboxValidate()
         {
             InitializeComponent();
-            if (!String.IsNullOrEmpty(PasswordChar))
+            if (PasswordChar != '\0')
             {
-                txtField.PasswordChar = '•';
+                txtField.PasswordChar = PasswordChar;
             }
         }
 

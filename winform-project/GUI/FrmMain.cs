@@ -14,9 +14,13 @@ namespace winform_project
 {
     public partial class FrmMain : Form
     {
+        public Employee Employee { get; set; }
+
         public FrmMain()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -47,7 +51,7 @@ namespace winform_project
         private void btnScheduler_Click(object sender, EventArgs e)
         {
             panelRight.Controls.Clear();
-            EmployeeSchedule emlpoyeeSchedule = new EmployeeSchedule();
+            EmployeeSchedule emlpoyeeSchedule = new EmployeeSchedule(Employee);
             emlpoyeeSchedule.TopLevel = false;
             emlpoyeeSchedule.Dock = DockStyle.Fill;
             emlpoyeeSchedule.Show();
@@ -61,8 +65,11 @@ namespace winform_project
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.WindowState = FormWindowState.Maximized;
+            if (Employee is null)
+            {
+                FrmLogin frmLogin = new FrmLogin(this);
+                frmLogin.ShowDialog(this);
+            }
         }
     }
 }

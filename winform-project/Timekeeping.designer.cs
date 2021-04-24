@@ -152,6 +152,13 @@ namespace winform_project
 			_outMsg = ((string)(result.GetParameterValue(4)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_getAllSchedulesByEmployeeId")]
+		public ISingleResult<sp_getAllSchedulesByEmployeeIdResult> sp_getAllSchedulesByEmployeeId([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> _employee_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> _working_month)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _employee_id, _working_month);
+			return ((ISingleResult<sp_getAllSchedulesByEmployeeIdResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Approvals")]
@@ -1388,6 +1395,194 @@ namespace winform_project
 		{
 			this.SendPropertyChanging();
 			entity.Position = null;
+		}
+	}
+	
+	public partial class sp_getAllSchedulesByEmployeeIdResult
+	{
+		
+		private int _schedule_id;
+		
+		private System.DateTime _working_date;
+		
+		private System.Nullable<bool> _is_holiday;
+		
+		private System.Nullable<bool> _is_weekend;
+		
+		private System.Nullable<double> _workday;
+		
+		private System.DateTime _start_work_hour;
+		
+		private System.Nullable<System.DateTime> _end_work_hour;
+		
+		private System.Nullable<int> _hour_work_late;
+		
+		private System.Nullable<int> _hour_leave_early;
+		
+		private System.Nullable<int> _employee_id;
+		
+		public sp_getAllSchedulesByEmployeeIdResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_schedule_id", DbType="Int NOT NULL")]
+		public int schedule_id
+		{
+			get
+			{
+				return this._schedule_id;
+			}
+			set
+			{
+				if ((this._schedule_id != value))
+				{
+					this._schedule_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_working_date", DbType="Date NOT NULL")]
+		public System.DateTime working_date
+		{
+			get
+			{
+				return this._working_date;
+			}
+			set
+			{
+				if ((this._working_date != value))
+				{
+					this._working_date = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_is_holiday", DbType="Bit")]
+		public System.Nullable<bool> is_holiday
+		{
+			get
+			{
+				return this._is_holiday;
+			}
+			set
+			{
+				if ((this._is_holiday != value))
+				{
+					this._is_holiday = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_is_weekend", DbType="Bit")]
+		public System.Nullable<bool> is_weekend
+		{
+			get
+			{
+				return this._is_weekend;
+			}
+			set
+			{
+				if ((this._is_weekend != value))
+				{
+					this._is_weekend = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_workday", DbType="Float")]
+		public System.Nullable<double> workday
+		{
+			get
+			{
+				return this._workday;
+			}
+			set
+			{
+				if ((this._workday != value))
+				{
+					this._workday = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_work_hour", DbType="DateTime NOT NULL")]
+		public System.DateTime start_work_hour
+		{
+			get
+			{
+				return this._start_work_hour;
+			}
+			set
+			{
+				if ((this._start_work_hour != value))
+				{
+					this._start_work_hour = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_work_hour", DbType="DateTime")]
+		public System.Nullable<System.DateTime> end_work_hour
+		{
+			get
+			{
+				return this._end_work_hour;
+			}
+			set
+			{
+				if ((this._end_work_hour != value))
+				{
+					this._end_work_hour = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hour_work_late", DbType="Int")]
+		public System.Nullable<int> hour_work_late
+		{
+			get
+			{
+				return this._hour_work_late;
+			}
+			set
+			{
+				if ((this._hour_work_late != value))
+				{
+					this._hour_work_late = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hour_leave_early", DbType="Int")]
+		public System.Nullable<int> hour_leave_early
+		{
+			get
+			{
+				return this._hour_leave_early;
+			}
+			set
+			{
+				if ((this._hour_leave_early != value))
+				{
+					this._hour_leave_early = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_employee_id", DbType="Int")]
+		public System.Nullable<int> employee_id
+		{
+			get
+			{
+				return this._employee_id;
+			}
+			set
+			{
+				if ((this._employee_id != value))
+				{
+					this._employee_id = value;
+				}
+			}
 		}
 	}
 }
