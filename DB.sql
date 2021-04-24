@@ -71,16 +71,17 @@ GO
 CREATE TABLE Employees
 (
     employee_id         int PRIMARY KEY IDENTITY,
+    position_id         int FOREIGN KEY REFERENCES Positions (position_id),
     name                nvarchar(255) NOT NULL,
     email               varchar(255)  NOT NULL UNIQUE,
     phone               varchar(20)   NOT NULL UNIQUE,
     [password]          varchar(255)  NOT NULL,
     [address]           nvarchar(255) NOT NULL,
     birthday            date          NOT NULL,
-    gender              bit           NOT NULL, -- 1 = Male, 2 = Female
+    gender              bit           NOT NULL, -- 1 = Male, 0 = Female
     coefficients_salary float         NOT NULL,
     avatar              varchar(max),
-    position_id         int FOREIGN KEY REFERENCES Positions (position_id),
+    status              int DEFAULT (1)         -- Active: 1, Disabled: 0
 )
 
 GO
@@ -171,6 +172,7 @@ EXEC sp_createEmployee @_name = N'Nhân Thị Viên',
      @_phone = '0987654321',
      @_address = N'Hồ Chí Minh',
      @_birthday = '2000-12-01',
+     @_gender = 0,
      @_coefficients_salary = 3,
      @_position_id = 3
 
@@ -182,7 +184,8 @@ CREATE TABLE Holidays
     holiday_id    int PRIMARY KEY IDENTITY,
     [start_date]  date NOT NULL DEFAULT (GETDATE()),
     [end_date]    date NOT NULL DEFAULT (GETDATE()),
-    [description] nvarchar(max)
+    [description] nvarchar(max),
+    status        int           DEFAULT (1) -- Active: 1, Disabled: 0
 )
 
 GO
@@ -244,28 +247,21 @@ GO
 -- Bảng Schedules (Chấm công)
 CREATE TABLE Schedules
 (
-    schedule_id  int PRIMARY KEY IDENTITY,
-    working_date date NOT NULL,   --
-    is_holiday   bit DEFAULT (0), -- Ngày nghỉ, lễ
-    is_weekend   bit DEFAULT (0), -- Ngày cuối tuần
-    workday      float DEFAULT (1), -- Số công trong ngày
-    employee_id  int FOREIGN KEY REFERENCES Employees (employee_id),
+    schedule_id      int PRIMARY KEY IDENTITY,
+    working_date     date     NOT NULL,                                 -- Ngày làm việc
+    is_holiday       bit               DEFAULT (0),                     -- Ngày nghỉ, lễ
+    is_weekend       bit               DEFAULT (0),                     -- Ngày cuối tuần
+    workday          float             DEFAULT (1),                     -- Số công trong ngày
+    start_work_hour  datetime NOT NULL DEFAULT (GETDATE()),             -- Giờ vào làm
+    end_work_hour    datetime          DEFAULT (NULL),                  -- Giờ ra về
+    hour_work_late   int               DEFAULT (0),                     -- Số giờ đi muộn
+    hour_leave_early int               DEFAULT (0),                     -- Số giờ về sớm
+    employee_id      int FOREIGN KEY REFERENCES Employees (employee_id) -- Mã nhân viên
 )
 
 GO
 
--- Bảng ScheduleDetails (Chi tiết chấm công)
-CREATE TABLE ScheduleDetails
-(
-    schedule_id      int      NOT NULL FOREIGN KEY REFERENCES Schedules (schedule_id),
-    start_work_hour  datetime NOT NULL DEFAULT (GETDATE()),
-    end_work_hour    datetime          DEFAULT (NULL),
-    hour_work_late   int               DEFAULT (0), -- Số giờ đi muộn
-    hour_leave_early int               DEFAULT (0)  -- Số giờ về sớm
-)
-
-GO
-
+-- Procedure chấm công
 CREATE PROC sp_loadSchedule(
     @_employee_id int,
     @_working_date date = NULL,
@@ -290,7 +286,7 @@ BEGIN TRY
     -- Nếu giờ hiện tại < 17:00
     IF GETDATE() < DATEADD(HOUR, 17, DATEADD(DAY, DATEDIFF(DAY, 0, GETDATE()), 0))
         SET @_hour_leave_early =
-                DATEDIFF(hour, getdate(), dateadd(hour, 17, dateadd(day, datediff(day, 0, getdate()), 0)))
+                DATEDIFF(HOUR, GETDATE(), DATEADD(HOUR, 17, DATEADD(DAY, DATEDIFF(DAY, 0, GETDATE()), 0)))
 
     SET @_working_date = ISNULL(@_working_date, GETDATE())
     SET @_start_work_hour = ISNULL(@_start_work_hour, GETDATE())
@@ -304,7 +300,7 @@ BEGIN TRY
     -- Kiểm tra ngày nghỉ lễ
     IF EXISTS(SELECT [start_date], [end_date]
               FROM Holidays
-              WHERE [start_date] = @_working_date
+              WHERE [status] = 1 AND [start_date] = @_working_date
                  OR [end_date] = @_working_date)
         SET @_is_holiday = 1
 
@@ -333,12 +329,10 @@ BEGIN TRY
                 PRINT @_workday
 
                 -- Chấm công
-                INSERT INTO Schedules(working_date, is_holiday, is_weekend, workday, employee_id)
-                VALUES (@_working_date, @_is_holiday, @_is_weekend, ROUND(@_workday, 1), @_employee_id)
-
-                -- Chi tiết chấm công
-                INSERT INTO ScheduleDetails(schedule_id, start_work_hour, hour_work_late)
-                VALUES (SCOPE_IDENTITY(), @_start_work_hour, @_hour_work_late)
+                INSERT INTO Schedules(working_date, is_holiday, is_weekend, workday, start_work_hour, hour_work_late,
+                                      employee_id)
+                VALUES (@_working_date, @_is_holiday, @_is_weekend, ROUND(@_workday, 1), @_start_work_hour,
+                        @_hour_work_late, @_employee_id)
 
                 SET @_outStt = 1;
                 SET @_outMsg = N'Chấm công thành công';
@@ -366,14 +360,10 @@ BEGIN TRY
                 IF (@_workday <= 0.2)
                     SET @_workday = 0
 
-                -- Cập nhật công khi checkout
+                -- Cập nhật công, thời gian khi checkout
                 UPDATE Schedules
-                SET workday = ROUND(@_workday, 1)
-                WHERE schedule_id = @_schedule_id;
-
-                -- Cập nhật thời gian checkout
-                UPDATE ScheduleDetails
-                SET end_work_hour    = @_end_work_hour,
+                SET workday          = ROUND(@_workday, 1),
+                    end_work_hour    = @_end_work_hour,
                     hour_leave_early = @_hour_leave_early
                 WHERE schedule_id = @_schedule_id;
 
@@ -401,11 +391,13 @@ EXEC sp_loadSchedule @_employee_id = 2
 
 GO
 
--- Bảng Salaries (Bảng lương)
-CREATE TABLE Salaries
+-- Bảng Approvals (Đơn từ)
+CREATE TABLE Approvals
 (
+    approval_id int PRIMARY KEY IDENTITY,
     employee_id int FOREIGN KEY REFERENCES Employees (employee_id),
-    schedule_id int FOREIGN KEY REFERENCES Schedules (schedule_id),
-    total       float DEFAULT (0)
+    start_date  datetime NOT NULL DEFAULT (GETDATE()),
+    end_date    datetime NOT NULL DEFAULT (GETDATE()),
+    status      int               DEFAULT (2) -- Waiting: 2, Active: 1, Disabled: 0
 )
 

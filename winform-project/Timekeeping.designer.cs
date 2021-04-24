@@ -30,15 +30,18 @@ namespace winform_project
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertApproval(Approval instance);
+    partial void UpdateApproval(Approval instance);
+    partial void DeleteApproval(Approval instance);
+    partial void InsertSchedule(Schedule instance);
+    partial void UpdateSchedule(Schedule instance);
+    partial void DeleteSchedule(Schedule instance);
     partial void InsertEmployee(Employee instance);
     partial void UpdateEmployee(Employee instance);
     partial void DeleteEmployee(Employee instance);
     partial void InsertHoliday(Holiday instance);
     partial void UpdateHoliday(Holiday instance);
     partial void DeleteHoliday(Holiday instance);
-    partial void InsertSchedule(Schedule instance);
-    partial void UpdateSchedule(Schedule instance);
-    partial void DeleteSchedule(Schedule instance);
     partial void InsertPosition(Position instance);
     partial void UpdatePosition(Position instance);
     partial void DeletePosition(Position instance);
@@ -74,6 +77,22 @@ namespace winform_project
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Approval> Approvals
+		{
+			get
+			{
+				return this.GetTable<Approval>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Schedule> Schedules
+		{
+			get
+			{
+				return this.GetTable<Schedule>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Employee> Employees
 		{
 			get
@@ -90,14 +109,6 @@ namespace winform_project
 			}
 		}
 		
-		public System.Data.Linq.Table<Schedule> Schedules
-		{
-			get
-			{
-				return this.GetTable<Schedule>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Position> Positions
 		{
 			get
@@ -106,19 +117,557 @@ namespace winform_project
 			}
 		}
 		
-		public System.Data.Linq.Table<Salary> Salaries
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_createEmployee")]
+		public int sp_createEmployee([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string _name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(255)")] string _email, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(255)")] string _password, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string _phone, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string _address, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> _birthday, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> _gender, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> _coefficients_salary, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(MAX)")] string _avatar, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> _position_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] ref System.Nullable<bool> _outStt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(200)")] ref string _outMsg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _name, _email, _password, _phone, _address, _birthday, _gender, _coefficients_salary, _avatar, _position_id, _outStt, _outMsg);
+			_outStt = ((System.Nullable<bool>)(result.GetParameterValue(10)));
+			_outMsg = ((string)(result.GetParameterValue(11)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_loadSchedule")]
+		public int sp_loadSchedule([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> _employee_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> _working_date, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> _start_work_hour, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> _end_work_hour, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] ref System.Nullable<bool> _outStt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(200)")] ref string _outMsg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _employee_id, _working_date, _start_work_hour, _end_work_hour, _outStt, _outMsg);
+			_outStt = ((System.Nullable<bool>)(result.GetParameterValue(4)));
+			_outMsg = ((string)(result.GetParameterValue(5)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_createPosition")]
+		public int sp_createPosition([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string _name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> _basic_salary, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] ref System.Nullable<bool> _outStt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(200)")] ref string _outMsg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _name, _basic_salary, _outStt, _outMsg);
+			_outStt = ((System.Nullable<bool>)(result.GetParameterValue(2)));
+			_outMsg = ((string)(result.GetParameterValue(3)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_insertHoliday")]
+		public int sp_insertHoliday([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> _start_date, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> _end_date, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(MAX)")] string _description, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] ref System.Nullable<bool> _outStt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(200)")] ref string _outMsg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _start_date, _end_date, _description, _outStt, _outMsg);
+			_outStt = ((System.Nullable<bool>)(result.GetParameterValue(3)));
+			_outMsg = ((string)(result.GetParameterValue(4)));
+			return ((int)(result.ReturnValue));
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Approvals")]
+	public partial class Approval : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _approval_id;
+		
+		private System.Nullable<int> _employee_id;
+		
+		private System.DateTime _start_date;
+		
+		private System.DateTime _end_date;
+		
+		private System.Nullable<int> _status;
+		
+		private EntityRef<Employee> _Employee;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onapproval_idChanging(int value);
+    partial void Onapproval_idChanged();
+    partial void Onemployee_idChanging(System.Nullable<int> value);
+    partial void Onemployee_idChanged();
+    partial void Onstart_dateChanging(System.DateTime value);
+    partial void Onstart_dateChanged();
+    partial void Onend_dateChanging(System.DateTime value);
+    partial void Onend_dateChanged();
+    partial void OnstatusChanging(System.Nullable<int> value);
+    partial void OnstatusChanged();
+    #endregion
+		
+		public Approval()
+		{
+			this._Employee = default(EntityRef<Employee>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approval_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int approval_id
 		{
 			get
 			{
-				return this.GetTable<Salary>();
+				return this._approval_id;
+			}
+			set
+			{
+				if ((this._approval_id != value))
+				{
+					this.Onapproval_idChanging(value);
+					this.SendPropertyChanging();
+					this._approval_id = value;
+					this.SendPropertyChanged("approval_id");
+					this.Onapproval_idChanged();
+				}
 			}
 		}
 		
-		public System.Data.Linq.Table<ScheduleDetail> ScheduleDetails
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_employee_id", DbType="Int")]
+		public System.Nullable<int> employee_id
 		{
 			get
 			{
-				return this.GetTable<ScheduleDetail>();
+				return this._employee_id;
+			}
+			set
+			{
+				if ((this._employee_id != value))
+				{
+					if (this._Employee.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onemployee_idChanging(value);
+					this.SendPropertyChanging();
+					this._employee_id = value;
+					this.SendPropertyChanged("employee_id");
+					this.Onemployee_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_date", DbType="DateTime NOT NULL")]
+		public System.DateTime start_date
+		{
+			get
+			{
+				return this._start_date;
+			}
+			set
+			{
+				if ((this._start_date != value))
+				{
+					this.Onstart_dateChanging(value);
+					this.SendPropertyChanging();
+					this._start_date = value;
+					this.SendPropertyChanged("start_date");
+					this.Onstart_dateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_date", DbType="DateTime NOT NULL")]
+		public System.DateTime end_date
+		{
+			get
+			{
+				return this._end_date;
+			}
+			set
+			{
+				if ((this._end_date != value))
+				{
+					this.Onend_dateChanging(value);
+					this.SendPropertyChanging();
+					this._end_date = value;
+					this.SendPropertyChanged("end_date");
+					this.Onend_dateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Int")]
+		public System.Nullable<int> status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_Approval", Storage="_Employee", ThisKey="employee_id", OtherKey="employee_id", IsForeignKey=true)]
+		public Employee Employee
+		{
+			get
+			{
+				return this._Employee.Entity;
+			}
+			set
+			{
+				Employee previousValue = this._Employee.Entity;
+				if (((previousValue != value) 
+							|| (this._Employee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Employee.Entity = null;
+						previousValue.Approvals.Remove(this);
+					}
+					this._Employee.Entity = value;
+					if ((value != null))
+					{
+						value.Approvals.Add(this);
+						this._employee_id = value.employee_id;
+					}
+					else
+					{
+						this._employee_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Employee");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Schedules")]
+	public partial class Schedule : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _schedule_id;
+		
+		private System.DateTime _working_date;
+		
+		private System.Nullable<bool> _is_holiday;
+		
+		private System.Nullable<bool> _is_weekend;
+		
+		private System.Nullable<double> _workday;
+		
+		private System.DateTime _start_work_hour;
+		
+		private System.Nullable<System.DateTime> _end_work_hour;
+		
+		private System.Nullable<int> _hour_work_late;
+		
+		private System.Nullable<int> _hour_leave_early;
+		
+		private System.Nullable<int> _employee_id;
+		
+		private EntityRef<Employee> _Employee;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onschedule_idChanging(int value);
+    partial void Onschedule_idChanged();
+    partial void Onworking_dateChanging(System.DateTime value);
+    partial void Onworking_dateChanged();
+    partial void Onis_holidayChanging(System.Nullable<bool> value);
+    partial void Onis_holidayChanged();
+    partial void Onis_weekendChanging(System.Nullable<bool> value);
+    partial void Onis_weekendChanged();
+    partial void OnworkdayChanging(System.Nullable<double> value);
+    partial void OnworkdayChanged();
+    partial void Onstart_work_hourChanging(System.DateTime value);
+    partial void Onstart_work_hourChanged();
+    partial void Onend_work_hourChanging(System.Nullable<System.DateTime> value);
+    partial void Onend_work_hourChanged();
+    partial void Onhour_work_lateChanging(System.Nullable<int> value);
+    partial void Onhour_work_lateChanged();
+    partial void Onhour_leave_earlyChanging(System.Nullable<int> value);
+    partial void Onhour_leave_earlyChanged();
+    partial void Onemployee_idChanging(System.Nullable<int> value);
+    partial void Onemployee_idChanged();
+    #endregion
+		
+		public Schedule()
+		{
+			this._Employee = default(EntityRef<Employee>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_schedule_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int schedule_id
+		{
+			get
+			{
+				return this._schedule_id;
+			}
+			set
+			{
+				if ((this._schedule_id != value))
+				{
+					this.Onschedule_idChanging(value);
+					this.SendPropertyChanging();
+					this._schedule_id = value;
+					this.SendPropertyChanged("schedule_id");
+					this.Onschedule_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_working_date", DbType="Date NOT NULL")]
+		public System.DateTime working_date
+		{
+			get
+			{
+				return this._working_date;
+			}
+			set
+			{
+				if ((this._working_date != value))
+				{
+					this.Onworking_dateChanging(value);
+					this.SendPropertyChanging();
+					this._working_date = value;
+					this.SendPropertyChanged("working_date");
+					this.Onworking_dateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_is_holiday", DbType="Bit")]
+		public System.Nullable<bool> is_holiday
+		{
+			get
+			{
+				return this._is_holiday;
+			}
+			set
+			{
+				if ((this._is_holiday != value))
+				{
+					this.Onis_holidayChanging(value);
+					this.SendPropertyChanging();
+					this._is_holiday = value;
+					this.SendPropertyChanged("is_holiday");
+					this.Onis_holidayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_is_weekend", DbType="Bit")]
+		public System.Nullable<bool> is_weekend
+		{
+			get
+			{
+				return this._is_weekend;
+			}
+			set
+			{
+				if ((this._is_weekend != value))
+				{
+					this.Onis_weekendChanging(value);
+					this.SendPropertyChanging();
+					this._is_weekend = value;
+					this.SendPropertyChanged("is_weekend");
+					this.Onis_weekendChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_workday", DbType="Float")]
+		public System.Nullable<double> workday
+		{
+			get
+			{
+				return this._workday;
+			}
+			set
+			{
+				if ((this._workday != value))
+				{
+					this.OnworkdayChanging(value);
+					this.SendPropertyChanging();
+					this._workday = value;
+					this.SendPropertyChanged("workday");
+					this.OnworkdayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_work_hour", DbType="DateTime NOT NULL")]
+		public System.DateTime start_work_hour
+		{
+			get
+			{
+				return this._start_work_hour;
+			}
+			set
+			{
+				if ((this._start_work_hour != value))
+				{
+					this.Onstart_work_hourChanging(value);
+					this.SendPropertyChanging();
+					this._start_work_hour = value;
+					this.SendPropertyChanged("start_work_hour");
+					this.Onstart_work_hourChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_work_hour", DbType="DateTime")]
+		public System.Nullable<System.DateTime> end_work_hour
+		{
+			get
+			{
+				return this._end_work_hour;
+			}
+			set
+			{
+				if ((this._end_work_hour != value))
+				{
+					this.Onend_work_hourChanging(value);
+					this.SendPropertyChanging();
+					this._end_work_hour = value;
+					this.SendPropertyChanged("end_work_hour");
+					this.Onend_work_hourChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hour_work_late", DbType="Int")]
+		public System.Nullable<int> hour_work_late
+		{
+			get
+			{
+				return this._hour_work_late;
+			}
+			set
+			{
+				if ((this._hour_work_late != value))
+				{
+					this.Onhour_work_lateChanging(value);
+					this.SendPropertyChanging();
+					this._hour_work_late = value;
+					this.SendPropertyChanged("hour_work_late");
+					this.Onhour_work_lateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hour_leave_early", DbType="Int")]
+		public System.Nullable<int> hour_leave_early
+		{
+			get
+			{
+				return this._hour_leave_early;
+			}
+			set
+			{
+				if ((this._hour_leave_early != value))
+				{
+					this.Onhour_leave_earlyChanging(value);
+					this.SendPropertyChanging();
+					this._hour_leave_early = value;
+					this.SendPropertyChanged("hour_leave_early");
+					this.Onhour_leave_earlyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_employee_id", DbType="Int")]
+		public System.Nullable<int> employee_id
+		{
+			get
+			{
+				return this._employee_id;
+			}
+			set
+			{
+				if ((this._employee_id != value))
+				{
+					if (this._Employee.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onemployee_idChanging(value);
+					this.SendPropertyChanging();
+					this._employee_id = value;
+					this.SendPropertyChanged("employee_id");
+					this.Onemployee_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_Schedule", Storage="_Employee", ThisKey="employee_id", OtherKey="employee_id", IsForeignKey=true)]
+		public Employee Employee
+		{
+			get
+			{
+				return this._Employee.Entity;
+			}
+			set
+			{
+				Employee previousValue = this._Employee.Entity;
+				if (((previousValue != value) 
+							|| (this._Employee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Employee.Entity = null;
+						previousValue.Schedules.Remove(this);
+					}
+					this._Employee.Entity = value;
+					if ((value != null))
+					{
+						value.Schedules.Add(this);
+						this._employee_id = value.employee_id;
+					}
+					else
+					{
+						this._employee_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Employee");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -130,6 +679,8 @@ namespace winform_project
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _employee_id;
+		
+		private System.Nullable<int> _position_id;
 		
 		private string _name;
 		
@@ -149,7 +700,9 @@ namespace winform_project
 		
 		private string _avatar;
 		
-		private System.Nullable<int> _position_id;
+		private System.Nullable<int> _status;
+		
+		private EntitySet<Approval> _Approvals;
 		
 		private EntitySet<Schedule> _Schedules;
 		
@@ -161,6 +714,8 @@ namespace winform_project
     partial void OnCreated();
     partial void Onemployee_idChanging(int value);
     partial void Onemployee_idChanged();
+    partial void Onposition_idChanging(System.Nullable<int> value);
+    partial void Onposition_idChanged();
     partial void OnnameChanging(string value);
     partial void OnnameChanged();
     partial void OnemailChanging(string value);
@@ -179,12 +734,13 @@ namespace winform_project
     partial void Oncoefficients_salaryChanged();
     partial void OnavatarChanging(string value);
     partial void OnavatarChanged();
-    partial void Onposition_idChanging(System.Nullable<int> value);
-    partial void Onposition_idChanged();
+    partial void OnstatusChanging(System.Nullable<int> value);
+    partial void OnstatusChanged();
     #endregion
 		
 		public Employee()
 		{
+			this._Approvals = new EntitySet<Approval>(new Action<Approval>(this.attach_Approvals), new Action<Approval>(this.detach_Approvals));
 			this._Schedules = new EntitySet<Schedule>(new Action<Schedule>(this.attach_Schedules), new Action<Schedule>(this.detach_Schedules));
 			this._Position = default(EntityRef<Position>);
 			OnCreated();
@@ -206,6 +762,30 @@ namespace winform_project
 					this._employee_id = value;
 					this.SendPropertyChanged("employee_id");
 					this.Onemployee_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_position_id", DbType="Int")]
+		public System.Nullable<int> position_id
+		{
+			get
+			{
+				return this._position_id;
+			}
+			set
+			{
+				if ((this._position_id != value))
+				{
+					if (this._Position.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onposition_idChanging(value);
+					this.SendPropertyChanging();
+					this._position_id = value;
+					this.SendPropertyChanged("position_id");
+					this.Onposition_idChanged();
 				}
 			}
 		}
@@ -390,27 +970,36 @@ namespace winform_project
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_position_id", DbType="Int")]
-		public System.Nullable<int> position_id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Int")]
+		public System.Nullable<int> status
 		{
 			get
 			{
-				return this._position_id;
+				return this._status;
 			}
 			set
 			{
-				if ((this._position_id != value))
+				if ((this._status != value))
 				{
-					if (this._Position.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onposition_idChanging(value);
+					this.OnstatusChanging(value);
 					this.SendPropertyChanging();
-					this._position_id = value;
-					this.SendPropertyChanged("position_id");
-					this.Onposition_idChanged();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_Approval", Storage="_Approvals", ThisKey="employee_id", OtherKey="employee_id")]
+		public EntitySet<Approval> Approvals
+		{
+			get
+			{
+				return this._Approvals;
+			}
+			set
+			{
+				this._Approvals.Assign(value);
 			}
 		}
 		
@@ -481,6 +1070,18 @@ namespace winform_project
 			}
 		}
 		
+		private void attach_Approvals(Approval entity)
+		{
+			this.SendPropertyChanging();
+			entity.Employee = this;
+		}
+		
+		private void detach_Approvals(Approval entity)
+		{
+			this.SendPropertyChanging();
+			entity.Employee = null;
+		}
+		
 		private void attach_Schedules(Schedule entity)
 		{
 			this.SendPropertyChanging();
@@ -508,6 +1109,8 @@ namespace winform_project
 		
 		private string _description;
 		
+		private System.Nullable<int> _status;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -520,6 +1123,8 @@ namespace winform_project
     partial void Onend_dateChanged();
     partial void OndescriptionChanging(string value);
     partial void OndescriptionChanged();
+    partial void OnstatusChanging(System.Nullable<int> value);
+    partial void OnstatusChanged();
     #endregion
 		
 		public Holiday()
@@ -607,225 +1212,22 @@ namespace winform_project
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Schedules")]
-	public partial class Schedule : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _schedule_id;
-		
-		private System.DateTime _working_date;
-		
-		private System.Nullable<bool> _is_holiday;
-		
-		private System.Nullable<bool> _is_weekend;
-		
-		private System.Nullable<double> _workday;
-		
-		private System.Nullable<int> _employee_id;
-		
-		private EntityRef<Employee> _Employee;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onschedule_idChanging(int value);
-    partial void Onschedule_idChanged();
-    partial void Onworking_dateChanging(System.DateTime value);
-    partial void Onworking_dateChanged();
-    partial void Onis_holidayChanging(System.Nullable<bool> value);
-    partial void Onis_holidayChanged();
-    partial void Onis_weekendChanging(System.Nullable<bool> value);
-    partial void Onis_weekendChanged();
-    partial void OnworkdayChanging(System.Nullable<double> value);
-    partial void OnworkdayChanged();
-    partial void Onemployee_idChanging(System.Nullable<int> value);
-    partial void Onemployee_idChanged();
-    #endregion
-		
-		public Schedule()
-		{
-			this._Employee = default(EntityRef<Employee>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_schedule_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int schedule_id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Int")]
+		public System.Nullable<int> status
 		{
 			get
 			{
-				return this._schedule_id;
+				return this._status;
 			}
 			set
 			{
-				if ((this._schedule_id != value))
+				if ((this._status != value))
 				{
-					this.Onschedule_idChanging(value);
+					this.OnstatusChanging(value);
 					this.SendPropertyChanging();
-					this._schedule_id = value;
-					this.SendPropertyChanged("schedule_id");
-					this.Onschedule_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_working_date", DbType="Date NOT NULL")]
-		public System.DateTime working_date
-		{
-			get
-			{
-				return this._working_date;
-			}
-			set
-			{
-				if ((this._working_date != value))
-				{
-					this.Onworking_dateChanging(value);
-					this.SendPropertyChanging();
-					this._working_date = value;
-					this.SendPropertyChanged("working_date");
-					this.Onworking_dateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_is_holiday", DbType="Bit")]
-		public System.Nullable<bool> is_holiday
-		{
-			get
-			{
-				return this._is_holiday;
-			}
-			set
-			{
-				if ((this._is_holiday != value))
-				{
-					this.Onis_holidayChanging(value);
-					this.SendPropertyChanging();
-					this._is_holiday = value;
-					this.SendPropertyChanged("is_holiday");
-					this.Onis_holidayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_is_weekend", DbType="Bit")]
-		public System.Nullable<bool> is_weekend
-		{
-			get
-			{
-				return this._is_weekend;
-			}
-			set
-			{
-				if ((this._is_weekend != value))
-				{
-					this.Onis_weekendChanging(value);
-					this.SendPropertyChanging();
-					this._is_weekend = value;
-					this.SendPropertyChanged("is_weekend");
-					this.Onis_weekendChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_workday", DbType="Float")]
-		public System.Nullable<double> workday
-		{
-			get
-			{
-				return this._workday;
-			}
-			set
-			{
-				if ((this._workday != value))
-				{
-					this.OnworkdayChanging(value);
-					this.SendPropertyChanging();
-					this._workday = value;
-					this.SendPropertyChanged("workday");
-					this.OnworkdayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_employee_id", DbType="Int")]
-		public System.Nullable<int> employee_id
-		{
-			get
-			{
-				return this._employee_id;
-			}
-			set
-			{
-				if ((this._employee_id != value))
-				{
-					if (this._Employee.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onemployee_idChanging(value);
-					this.SendPropertyChanging();
-					this._employee_id = value;
-					this.SendPropertyChanged("employee_id");
-					this.Onemployee_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_Schedule", Storage="_Employee", ThisKey="employee_id", OtherKey="employee_id", IsForeignKey=true)]
-		public Employee Employee
-		{
-			get
-			{
-				return this._Employee.Entity;
-			}
-			set
-			{
-				Employee previousValue = this._Employee.Entity;
-				if (((previousValue != value) 
-							|| (this._Employee.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Employee.Entity = null;
-						previousValue.Schedules.Remove(this);
-					}
-					this._Employee.Entity = value;
-					if ((value != null))
-					{
-						value.Schedules.Add(this);
-						this._employee_id = value.employee_id;
-					}
-					else
-					{
-						this._employee_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Employee");
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
 				}
 			}
 		}
@@ -986,168 +1388,6 @@ namespace winform_project
 		{
 			this.SendPropertyChanging();
 			entity.Position = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Salaries")]
-	public partial class Salary
-	{
-		
-		private System.Nullable<int> _employee_id;
-		
-		private System.Nullable<int> _schedule_id;
-		
-		private System.Nullable<double> _total;
-		
-		public Salary()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_employee_id", DbType="Int")]
-		public System.Nullable<int> employee_id
-		{
-			get
-			{
-				return this._employee_id;
-			}
-			set
-			{
-				if ((this._employee_id != value))
-				{
-					this._employee_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_schedule_id", DbType="Int")]
-		public System.Nullable<int> schedule_id
-		{
-			get
-			{
-				return this._schedule_id;
-			}
-			set
-			{
-				if ((this._schedule_id != value))
-				{
-					this._schedule_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Float")]
-		public System.Nullable<double> total
-		{
-			get
-			{
-				return this._total;
-			}
-			set
-			{
-				if ((this._total != value))
-				{
-					this._total = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ScheduleDetails")]
-	public partial class ScheduleDetail
-	{
-		
-		private int _schedule_id;
-		
-		private System.DateTime _start_work_hour;
-		
-		private System.Nullable<System.DateTime> _end_work_hour;
-		
-		private System.Nullable<int> _hour_work_late;
-		
-		private System.Nullable<int> _hour_leave_early;
-		
-		public ScheduleDetail()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_schedule_id", DbType="Int NOT NULL")]
-		public int schedule_id
-		{
-			get
-			{
-				return this._schedule_id;
-			}
-			set
-			{
-				if ((this._schedule_id != value))
-				{
-					this._schedule_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_work_hour", DbType="DateTime NOT NULL")]
-		public System.DateTime start_work_hour
-		{
-			get
-			{
-				return this._start_work_hour;
-			}
-			set
-			{
-				if ((this._start_work_hour != value))
-				{
-					this._start_work_hour = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_work_hour", DbType="DateTime")]
-		public System.Nullable<System.DateTime> end_work_hour
-		{
-			get
-			{
-				return this._end_work_hour;
-			}
-			set
-			{
-				if ((this._end_work_hour != value))
-				{
-					this._end_work_hour = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hour_work_late", DbType="Int")]
-		public System.Nullable<int> hour_work_late
-		{
-			get
-			{
-				return this._hour_work_late;
-			}
-			set
-			{
-				if ((this._hour_work_late != value))
-				{
-					this._hour_work_late = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hour_leave_early", DbType="Int")]
-		public System.Nullable<int> hour_leave_early
-		{
-			get
-			{
-				return this._hour_leave_early;
-			}
-			set
-			{
-				if ((this._hour_leave_early != value))
-				{
-					this._hour_leave_early = value;
-				}
-			}
 		}
 	}
 }

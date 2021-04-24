@@ -38,3 +38,4 @@ F:\DataProject\C#\winform-timekeeping-management\winform-project\obj\Debug\winfo
 F:\DataProject\C#\winform-timekeeping-management\winform-project\obj\Debug\winform-project.pdb
 D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform_project.GUI.Employee.EmployeeList.resources
 D:\DataProjects\C#\winform-timekeeping-management\winform-project\obj\Debug\winform_project.GUI.Schedule.EmployeeSchedule.resources
+F:\DataProject\C#\winform-timekeeping-management\winform-project\obj\Debug\winform_project.GUI.Schedule.EmployeeSchedule.resources
