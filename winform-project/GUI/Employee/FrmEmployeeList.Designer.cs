@@ -1,6 +1,6 @@
 ﻿namespace winform_project.GUI.Employee
 {
-    partial class EmployeeList
+    partial class FrmEmployeeList
     {
         /// <summary>
         /// Required designer variable.
@@ -126,7 +126,7 @@
             this.dgvEmployee.ReadOnly = true;
             this.dgvEmployee.Size = new System.Drawing.Size(890, 448);
             this.dgvEmployee.TabIndex = 1;
-            this.dgvEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployee_CellContentClick);
+            this.dgvEmployee.CellContextMenuStripNeeded += new System.Windows.Forms.DataGridViewCellContextMenuStripNeededEventHandler(this.dgvEmployee_CellContextMenuStripNeeded);
             // 
             // id
             // 
@@ -192,7 +192,7 @@
             this.Password.ReadOnly = true;
             this.Password.Visible = false;
             // 
-            // EmployeeList
+            // FrmEmployeeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -200,7 +200,7 @@
             this.Controls.Add(this.dgvEmployee);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "EmployeeList";
+            this.Name = "FrmEmployeeList";
             this.Text = "Danh Sách Nhân Viên - Chương Trình Chấm Công V1";
             this.Load += new System.EventHandler(this.EmployeeList_Load);
             this.panel1.ResumeLayout(false);

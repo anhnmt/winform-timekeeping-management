@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using winform_project.GUI.Employee;
+using winform_project.GUI.Profile;
 using winform_project.GUI.Schedule;
 
 namespace winform_project
@@ -21,6 +22,13 @@ namespace winform_project
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.WindowState = FormWindowState.Maximized;
+
+
+            if (Employee is null)
+            {
+                FrmLogin frmLogin = new FrmLogin(this);
+                frmLogin.ShowDialog(this);
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -35,41 +43,46 @@ namespace winform_project
 
         private void btnEmployee_Click(object sender, EventArgs e)
         {
+            btnEmployee.Select();
             panelRight.Controls.Clear();
-            EmployeeList employeeList = new EmployeeList();
-            employeeList.TopLevel = false;
-            employeeList.Dock = DockStyle.Fill;
+            FrmEmployeeList employeeList = new FrmEmployeeList
+            {
+                TopLevel = false,
+                Dock = DockStyle.Fill
+            };
             employeeList.Show();
             panelRight.Controls.Add(employeeList);
         }
 
-        private void btnDashboard_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnScheduler_Click(object sender, EventArgs e)
         {
+            btnScheduler.Select();
             panelRight.Controls.Clear();
-            EmployeeSchedule emlpoyeeSchedule = new EmployeeSchedule(Employee);
-            emlpoyeeSchedule.TopLevel = false;
-            emlpoyeeSchedule.Dock = DockStyle.Fill;
+            FrmSchedule emlpoyeeSchedule = new FrmSchedule(Employee)
+            {
+                TopLevel = false,
+                Dock = DockStyle.Fill
+            };
             emlpoyeeSchedule.Show();
             panelRight.Controls.Add(emlpoyeeSchedule);
         }
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-
+            btnProfile.Select();
+            panelRight.Controls.Clear();
+            FrmProfile frmProfile = new FrmProfile(Employee)
+            {
+                TopLevel = false,
+                Dock = DockStyle.Fill
+            };
+            frmProfile.Show();
+            panelRight.Controls.Add(frmProfile);
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            if (Employee is null)
-            {
-                FrmLogin frmLogin = new FrmLogin(this);
-                frmLogin.ShowDialog(this);
-            }
+            btnProfile_Click(sender, e);
         }
     }
 }

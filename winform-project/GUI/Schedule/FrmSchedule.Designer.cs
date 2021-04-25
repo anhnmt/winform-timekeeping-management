@@ -1,7 +1,7 @@
 ﻿
 namespace winform_project.GUI.Schedule
 {
-    partial class EmployeeSchedule
+    partial class FrmSchedule
     {
         /// <summary>
         /// Required designer variable.
@@ -29,20 +29,21 @@ namespace winform_project.GUI.Schedule
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem41 = new System.Windows.Forms.ListViewItem(new string[] {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Công làm việc",
             "0"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem42 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Số giờ đi muộn",
             "0"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem43 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "Số giờ về sớm",
             "0"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem44 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Số lần quên check inout",
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Số ngày nghỉ lễ trong tháng",
             "0"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem45 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Số công nghỉ không lý do",
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Số ngày nghỉ cuối tuần trong tháng",
             "0"}, -1);
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
@@ -50,9 +51,6 @@ namespace winform_project.GUI.Schedule
             this.dtpMonth = new System.Windows.Forms.DateTimePicker();
             this.lblTitle = new System.Windows.Forms.Label();
             this.dgvLeft = new System.Windows.Forms.DataGridView();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.WorkingDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Holiday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Weekend = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +60,10 @@ namespace winform_project.GUI.Schedule
             this.HourLeaveEarly = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ScheduleId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.listView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLeft)).BeginInit();
             this.SuspendLayout();
@@ -89,6 +91,7 @@ namespace winform_project.GUI.Schedule
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnSchedule
             // 
@@ -104,12 +107,12 @@ namespace winform_project.GUI.Schedule
             // dtpMonth
             // 
             this.dtpMonth.CalendarMonthBackground = System.Drawing.Color.White;
-            this.dtpMonth.CustomFormat = "MM/yyyy";
+            this.dtpMonth.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dtpMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dtpMonth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpMonth.Location = new System.Drawing.Point(148, 14);
             this.dtpMonth.Name = "dtpMonth";
-            this.dtpMonth.Size = new System.Drawing.Size(92, 21);
+            this.dtpMonth.Size = new System.Drawing.Size(151, 21);
             this.dtpMonth.TabIndex = 1;
             this.dtpMonth.ValueChanged += new System.EventHandler(this.dtpMonth_ValueChanged);
             // 
@@ -152,41 +155,6 @@ namespace winform_project.GUI.Schedule
             this.dgvLeft.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLeft.Size = new System.Drawing.Size(662, 469);
             this.dgvLeft.TabIndex = 3;
-            // 
-            // listView1
-            // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView1.HideSelection = false;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem41,
-            listViewItem42,
-            listViewItem43,
-            listViewItem44,
-            listViewItem45});
-            this.listView1.LabelWrap = false;
-            this.listView1.Location = new System.Drawing.Point(668, 50);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(282, 469);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "";
-            this.columnHeader1.Width = 216;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader2.Width = 45;
             // 
             // WorkingDate
             // 
@@ -253,6 +221,46 @@ namespace winform_project.GUI.Schedule
             this.ScheduleId.ReadOnly = true;
             this.ScheduleId.Visible = false;
             // 
+            // listView
+            // 
+            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.listView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.listView.HideSelection = false;
+            this.listView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5});
+            this.listView.LabelWrap = false;
+            this.listView.Location = new System.Drawing.Point(668, 50);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(282, 469);
+            this.listView.TabIndex = 0;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "";
+            this.columnHeader1.Width = 216;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader2.Width = 45;
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // EmployeeSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -260,7 +268,7 @@ namespace winform_project.GUI.Schedule
             this.ClientSize = new System.Drawing.Size(950, 518);
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.dgvLeft);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EmployeeSchedule";
             this.Text = "EmlpoyeeSchedule";
@@ -280,7 +288,7 @@ namespace winform_project.GUI.Schedule
         private System.Windows.Forms.DateTimePicker dtpMonth;
         private System.Windows.Forms.Button btnSchedule;
         private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.DataGridViewTextBoxColumn WorkingDate;
@@ -292,5 +300,6 @@ namespace winform_project.GUI.Schedule
         private System.Windows.Forms.DataGridViewTextBoxColumn HourLeaveEarly;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ScheduleId;
+        private System.Windows.Forms.Timer timer;
     }
 }

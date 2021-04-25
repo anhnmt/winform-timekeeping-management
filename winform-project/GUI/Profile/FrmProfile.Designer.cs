@@ -1,6 +1,7 @@
-﻿namespace winform_project.GUI.Employee
+﻿
+namespace winform_project.GUI.Profile
 {
-    partial class EmployeeDetail
+    partial class FrmProfile
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +29,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Profile
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "EmployeeDetail";
+            this.ClientSize = new System.Drawing.Size(800, 490);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "Profile";
+            this.Text = "Profile";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

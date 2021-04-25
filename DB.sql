@@ -424,7 +424,43 @@ END
 
 GO
 
-EXEC sp_getAllSchedulesByEmployeeId @_employee_id = 2, @_working_month = '2021-04-01'
+EXEC sp_getAllSchedulesByEmployeeId @_employee_id = 2, @_working_month = '2021-05-01'
+
+GO
+-- Procedure lịch sử chấm công theo nhân viên
+CREATE PROC sp_countAllSchedulesByEmployeeId(
+    @_employee_id int,
+    @_working_month date = NULL
+)
+AS
+BEGIN
+    SET @_working_month = CONVERT(DATETIME, ISNULL(@_working_month, GETDATE()))
+
+    DECLARE
+        -- Lấy ngày đầu tiên của tháng
+        @_FirstDayOfCurrentMonth DATE = CONVERT(DATE, DATEADD(MM, DATEDIFF(MM, 0, @_working_month), 0)),
+        -- Lấy ngày cuối cùng của tháng
+        @_LastDayOfCurrentMonth DATE = CONVERT(DATE,
+                DATEADD(DD, -1, DATEADD(MM, DATEDIFF(MM, 0, @_working_month) + 1, 0)))
+
+    PRINT @_FirstDayOfCurrentMonth
+    PRINT @_LastDayOfCurrentMonth
+
+    SELECT ROUND(SUM(workday), 1)           AS 'total_workday',
+           SUM(hour_work_late)              AS 'total_hour_work_late',
+           SUM(hour_leave_early)            AS 'total_hour_leave_early',
+           COUNT(IIF(is_holiday = 1, 1, 0)) AS 'total_holiday',
+           COUNT(IIF(is_weekend = 1, 1, 0)) AS 'total_holiday'
+    FROM Schedules
+    WHERE employee_id = 2
+      AND working_date >= @_FirstDayOfCurrentMonth
+      AND working_date <= @_LastDayOfCurrentMonth
+    GROUP BY employee_id
+END
+
+GO
+
+EXEC sp_countAllSchedulesByEmployeeId @_employee_id = 2, @_working_month = '2021-04-01'
 
 GO
 

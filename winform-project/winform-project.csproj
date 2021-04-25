@@ -69,23 +69,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\Employee\EmployeeDetail.cs">
+    <Compile Include="GUI\Employee\FrmEmployeeDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\Employee\EmployeeDetail.Designer.cs">
-      <DependentUpon>EmployeeDetail.cs</DependentUpon>
+    <Compile Include="GUI\Employee\FrmEmployeeDetail.Designer.cs">
+      <DependentUpon>FrmEmployeeDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Employee\EmployeeList.cs">
+    <Compile Include="GUI\Employee\FrmEmployeeList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\Employee\EmployeeList.Designer.cs">
-      <DependentUpon>EmployeeList.cs</DependentUpon>
+    <Compile Include="GUI\Employee\FrmEmployeeList.Designer.cs">
+      <DependentUpon>FrmEmployeeList.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Schedule\EmployeeSchedule.cs">
+    <Compile Include="GUI\Profile\FrmProfile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\Schedule\EmployeeSchedule.Designer.cs">
-      <DependentUpon>EmployeeSchedule.cs</DependentUpon>
+    <Compile Include="GUI\Profile\FrmProfile.Designer.cs">
+      <DependentUpon>FrmProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Schedule\FrmSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Schedule\FrmSchedule.Designer.cs">
+      <DependentUpon>FrmSchedule.cs</DependentUpon>
     </Compile>
     <Compile Include="Timekeeping.designer.cs">
       <AutoGen>True</AutoGen>
@@ -112,8 +118,8 @@
     <Compile Include="Validates\TextboxValidate.Designer.cs">
       <DependentUpon>TextboxValidate.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GUI\Employee\EmployeeList.resx">
-      <DependentUpon>EmployeeList.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Employee\FrmEmployeeList.resx">
+      <DependentUpon>FrmEmployeeList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
@@ -121,8 +127,11 @@
     <EmbeddedResource Include="GUI\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Schedule\EmployeeSchedule.resx">
-      <DependentUpon>EmployeeSchedule.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Profile\FrmProfile.resx">
+      <DependentUpon>FrmProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Schedule\FrmSchedule.resx">
+      <DependentUpon>FrmSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -165,19 +174,12 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GUI\Dashboard\" />
     <Folder Include="GUI\Holiday\" />
     <Folder Include="GUI\Position\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-male-user-96.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-sign-out-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-sign-out-20.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-sign-out-30.png" />
@@ -196,6 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons8-calendar-48.ico" />
+    <None Include="Resources\icons8-window-search-96.png" />
     <None Include="Resources\icons8-schedule-30.png" />
     <None Include="Resources\icons8-staff-30.png" />
     <None Include="Resources\icons8-dashboard-30.png" />

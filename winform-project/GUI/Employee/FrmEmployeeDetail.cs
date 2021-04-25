@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace winform_project.GUI.Employee
 {
-    public partial class EmployeeDetail : Form
+    public partial class FrmEmployeeDetail : Form
     {
-        public EmployeeDetail()
+        public FrmEmployeeDetail()
         {
             InitializeComponent();
         }

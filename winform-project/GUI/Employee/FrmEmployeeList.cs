@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace winform_project.GUI.Employee
 {
-    public partial class EmployeeList : Form
+    public partial class FrmEmployeeList : Form
     {
         private TimekeepingDataContext tdc = new TimekeepingDataContext();
 
-        public EmployeeList()
+        public FrmEmployeeList()
         {
             InitializeComponent();
         }
@@ -41,7 +41,7 @@ namespace winform_project.GUI.Employee
                                      };
         }
 
-        private void dgvEmployee_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvEmployee_CellContextMenuStripNeeded(object sender, DataGridViewCellContextMenuStripNeededEventArgs e)
         {
 
         }

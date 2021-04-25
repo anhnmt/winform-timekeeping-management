@@ -144,6 +144,13 @@ namespace winform_project
 			return ((int)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_getAllSchedulesByEmployeeId")]
+		public ISingleResult<sp_getAllSchedulesByEmployeeIdResult> sp_getAllSchedulesByEmployeeId([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> _employee_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> _working_month)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _employee_id, _working_month);
+			return ((ISingleResult<sp_getAllSchedulesByEmployeeIdResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_insertHoliday")]
 		public int sp_insertHoliday([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> _start_date, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> _end_date, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(MAX)")] string _description, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] ref System.Nullable<bool> _outStt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(200)")] ref string _outMsg)
 		{
@@ -153,11 +160,11 @@ namespace winform_project
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_getAllSchedulesByEmployeeId")]
-		public ISingleResult<sp_getAllSchedulesByEmployeeIdResult> sp_getAllSchedulesByEmployeeId([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> _employee_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> _working_month)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_countAllSchedulesByEmployeeId")]
+		public ISingleResult<sp_countAllSchedulesByEmployeeIdResult> sp_countAllSchedulesByEmployeeId([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> _employee_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> _working_month)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _employee_id, _working_month);
-			return ((ISingleResult<sp_getAllSchedulesByEmployeeIdResult>)(result.ReturnValue));
+			return ((ISingleResult<sp_countAllSchedulesByEmployeeIdResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1581,6 +1588,104 @@ namespace winform_project
 				if ((this._employee_id != value))
 				{
 					this._employee_id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_countAllSchedulesByEmployeeIdResult
+	{
+		
+		private System.Nullable<double> _total_workday;
+		
+		private System.Nullable<int> _total_hour_work_late;
+		
+		private System.Nullable<int> _total_hour_leave_early;
+		
+		private System.Nullable<int> _total_holiday;
+		
+		private System.Nullable<int> _total_weekend;
+		
+		public sp_countAllSchedulesByEmployeeIdResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_workday", DbType="Float")]
+		public System.Nullable<double> total_workday
+		{
+			get
+			{
+				return this._total_workday;
+			}
+			set
+			{
+				if ((this._total_workday != value))
+				{
+					this._total_workday = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_hour_work_late", DbType="Int")]
+		public System.Nullable<int> total_hour_work_late
+		{
+			get
+			{
+				return this._total_hour_work_late;
+			}
+			set
+			{
+				if ((this._total_hour_work_late != value))
+				{
+					this._total_hour_work_late = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_hour_leave_early", DbType="Int")]
+		public System.Nullable<int> total_hour_leave_early
+		{
+			get
+			{
+				return this._total_hour_leave_early;
+			}
+			set
+			{
+				if ((this._total_hour_leave_early != value))
+				{
+					this._total_hour_leave_early = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_holiday", DbType="Int")]
+		public System.Nullable<int> total_holiday
+		{
+			get
+			{
+				return this._total_holiday;
+			}
+			set
+			{
+				if ((this._total_holiday != value))
+				{
+					this._total_holiday = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_weekend", DbType="Int")]
+		public System.Nullable<int> total_weekend
+		{
+			get
+			{
+				return this._total_weekend;
+			}
+			set
+			{
+				if ((this._total_weekend != value))
+				{
+					this._total_weekend = value;
 				}
 			}
 		}
