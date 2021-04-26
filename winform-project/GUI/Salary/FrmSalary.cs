@@ -12,10 +12,11 @@ namespace winform_project.GUI.Salary
 {
     public partial class FrmSalary : Form
     {
-        public winform_project.Employee Employee { get; set; }
-        public FrmSalary(winform_project.Employee employee)
+        private TimekeepingDataContext tdc = new TimekeepingDataContext();
+        public int EmployeeId { get; set; }
+        public FrmSalary(int employeeId)
         {
-            Employee = employee;
+            EmployeeId = employeeId;
             InitializeComponent();
         }
     }

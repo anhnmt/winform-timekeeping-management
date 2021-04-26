@@ -101,13 +101,17 @@ namespace winform_project.GUI.Schedule
         {
             working_date = Convert.ToDateTime(dtpMonth.Text);
 
-            sp_countAllSchedulesByEmployeeIdResult schedule = tdc.sp_countAllSchedulesByEmployeeId(Employee.employee_id, working_date).First();
+            sp_countAllSchedulesByEmployeeIdResult schedule = tdc.sp_countAllSchedulesByEmployeeId(Employee.employee_id, working_date).FirstOrDefault();
 
-            listView.Items[0].SubItems[1].Text = schedule.total_workday.ToString();
-            listView.Items[1].SubItems[1].Text = schedule.total_hour_work_late.ToString();
-            listView.Items[2].SubItems[1].Text = schedule.total_hour_leave_early.ToString();
-            listView.Items[3].SubItems[1].Text = schedule.total_holiday.ToString();
-            listView.Items[4].SubItems[1].Text = schedule.total_weekend.ToString();
+            if (schedule != null)
+            {
+                listView.Items[0].SubItems[1].Text = schedule.total_workday.ToString();
+                listView.Items[1].SubItems[1].Text = schedule.total_hour_work_late.ToString();
+                listView.Items[2].SubItems[1].Text = schedule.total_hour_leave_early.ToString();
+                listView.Items[3].SubItems[1].Text = schedule.total_holiday.ToString();
+                listView.Items[4].SubItems[1].Text = schedule.total_weekend.ToString();
+            }
+
         }
 
         private void timer_Tick(object sender, EventArgs e)

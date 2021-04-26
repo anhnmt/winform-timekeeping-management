@@ -12,11 +12,53 @@ namespace winform_project.GUI.Employee
 {
     public partial class FrmEmployeeDetail : Form
     {
-        public winform_project.Employee Employee { get; set; }
-        public FrmEmployeeDetail(winform_project.Employee employee)
+        private TimekeepingDataContext tdc = new TimekeepingDataContext();
+        public int? EmployeeId { get; set; }
+        public FrmEmployeeDetail(int? employeeId)
         {
-            Employee = employee;
+            EmployeeId = employeeId;
             InitializeComponent();
+            Load_Position();
+        }
+
+        private void FrmEmployeeDetail_Load(object sender, EventArgs e)
+        {
+            if (EmployeeId != null)
+            {
+                this.Text = "Sửa đổi nhân viên";
+                btnSave.Text = "";
+
+                var Employee = tdc.Employees.FirstOrDefault(x => x.employee_id == EmployeeId);
+
+                if (Employee.avatar != null)
+                {
+                    //pbEmpPicture.Image = Image.FromStream(new MemoryStream(Employee.avatar.ToArray()));
+
+                    txtName.TextContent = Employee.name.ToString();
+                    txtEmail.TextContent = Employee.email.ToString();
+                    txtPhone.TextContent = Employee.phone.ToString();
+                    txtAddress.TextContent = Employee.address.ToString();
+                    txtPassword.TextContent = Employee.password.ToString();
+                    txtSalary.TextContent = Employee.coefficients_salary.ToString();
+                    cboPosition.SelectedValue = Employee.position_id;
+                    radMale.Checked = Employee.gender;
+                    radFemale.Checked = !Employee.gender;
+                    txtBirthday.Value = Employee.birthday;
+                }
+            }
+        }
+
+        private void Load_Position()
+        {
+            cboPosition.DataSource = (from p in tdc.Positions
+                                      select new
+                                      {
+                                          PosId = p.position_id,
+                                          Name = p.name,
+                                      }).ToList();
+
+            cboPosition.DisplayMember = "Name";
+            cboPosition.ValueMember = "PosId";
         }
     }
 }

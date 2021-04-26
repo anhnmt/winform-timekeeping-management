@@ -16,6 +16,11 @@ namespace winform_project.Validates
         {
             get { return txtField; }
         }
+        public string TextContent
+        {
+            get { return TextBox.Text; }
+            set { this.TextBox.Text = value; }
+        }
         public string Label
         {
             set { this.lblError.Text = value; }

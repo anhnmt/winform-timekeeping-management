@@ -74,8 +74,8 @@ namespace winform_project.GUI.Employee
         {
             if (dgvEmployee.CurrentRow != null)
             {
-                winform_project.Employee selectedEmployee = (winform_project.Employee)dgvEmployee.CurrentRow.DataBoundItem;
-                FrmSalary frmSalary = new FrmSalary(selectedEmployee);
+                int EmployeeId = (int)dgvEmployee.CurrentRow.Cells["EmployeeId"].Value;
+                FrmSalary frmSalary = new FrmSalary(EmployeeId);
                 frmSalary.ShowDialog(this);
             }
         }
@@ -84,8 +84,8 @@ namespace winform_project.GUI.Employee
         {
             if (dgvEmployee.CurrentRow != null)
             {
-                winform_project.Employee selectedEmployee = (winform_project.Employee)dgvEmployee.CurrentRow.DataBoundItem;
-                FrmEmployeeDetail frmEmployeeDetail = new FrmEmployeeDetail(selectedEmployee);
+                int EmployeeId = (int) dgvEmployee.CurrentRow.Cells["EmployeeId"].Value;
+                FrmEmployeeDetail frmEmployeeDetail = new FrmEmployeeDetail(EmployeeId);
                 frmEmployeeDetail.ShowDialog(this);
             }
         }

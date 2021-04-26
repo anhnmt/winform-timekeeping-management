@@ -36,7 +36,6 @@
             this.lblPhone = new System.Windows.Forms.Label();
             this.txtAddress = new winform_project.Validates.TextboxValidate();
             this.lblAddress = new System.Windows.Forms.Label();
-            this.txtBirthday = new winform_project.Validates.TextboxValidate();
             this.lblBrithday = new System.Windows.Forms.Label();
             this.txtSalary = new winform_project.Validates.TextboxValidate();
             this.lblSalary = new System.Windows.Forms.Label();
@@ -45,6 +44,10 @@
             this.lblGender = new System.Windows.Forms.Label();
             this.txtPassword = new winform_project.Validates.TextboxValidate();
             this.lblPassword = new System.Windows.Forms.Label();
+            this.txtBirthday = new System.Windows.Forms.DateTimePicker();
+            this.cboPosition = new System.Windows.Forms.ComboBox();
+            this.lblPosition = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblName
@@ -59,7 +62,7 @@
             // txtName
             // 
             this.txtName.FieldName = null;
-            this.txtName.Location = new System.Drawing.Point(218, 49);
+            this.txtName.Location = new System.Drawing.Point(234, 40);
             this.txtName.MaxLength = 0;
             this.txtName.MinLength = 0;
             this.txtName.Name = "txtName";
@@ -71,7 +74,7 @@
             // txtEmail
             // 
             this.txtEmail.FieldName = null;
-            this.txtEmail.Location = new System.Drawing.Point(218, 96);
+            this.txtEmail.Location = new System.Drawing.Point(234, 87);
             this.txtEmail.MaxLength = 0;
             this.txtEmail.MinLength = 0;
             this.txtEmail.Name = "txtEmail";
@@ -130,18 +133,6 @@
             this.lblAddress.Size = new System.Drawing.Size(43, 13);
             this.lblAddress.TabIndex = 6;
             this.lblAddress.Text = "Địa chỉ:";
-            // 
-            // txtBirthday
-            // 
-            this.txtBirthday.FieldName = null;
-            this.txtBirthday.Location = new System.Drawing.Point(234, 237);
-            this.txtBirthday.MaxLength = 0;
-            this.txtBirthday.MinLength = 0;
-            this.txtBirthday.Name = "txtBirthday";
-            this.txtBirthday.PasswordChar = '\0';
-            this.txtBirthday.Pattern = null;
-            this.txtBirthday.Size = new System.Drawing.Size(247, 41);
-            this.txtBirthday.TabIndex = 9;
             // 
             // lblBrithday
             // 
@@ -207,7 +198,7 @@
             // txtPassword
             // 
             this.txtPassword.FieldName = null;
-            this.txtPassword.Location = new System.Drawing.Point(571, 115);
+            this.txtPassword.Location = new System.Drawing.Point(571, 68);
             this.txtPassword.MaxLength = 0;
             this.txtPassword.MinLength = 0;
             this.txtPassword.Name = "txtPassword";
@@ -219,11 +210,46 @@
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(495, 115);
+            this.lblPassword.Location = new System.Drawing.Point(500, 68);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(67, 13);
+            this.lblPassword.Size = new System.Drawing.Size(55, 13);
             this.lblPassword.TabIndex = 15;
-            this.lblPassword.Text = "Hệ số lương:";
+            this.lblPassword.Text = "Mật khẩu:";
+            // 
+            // txtBirthday
+            // 
+            this.txtBirthday.CustomFormat = "dd/MM/yyyy";
+            this.txtBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtBirthday.Location = new System.Drawing.Point(234, 237);
+            this.txtBirthday.Name = "txtBirthday";
+            this.txtBirthday.Size = new System.Drawing.Size(247, 20);
+            this.txtBirthday.TabIndex = 17;
+            // 
+            // cboPosition
+            // 
+            this.cboPosition.FormattingEnabled = true;
+            this.cboPosition.Location = new System.Drawing.Point(234, 275);
+            this.cboPosition.Name = "cboPosition";
+            this.cboPosition.Size = new System.Drawing.Size(247, 21);
+            this.cboPosition.TabIndex = 18;
+            // 
+            // lblPosition
+            // 
+            this.lblPosition.AutoSize = true;
+            this.lblPosition.Location = new System.Drawing.Point(158, 278);
+            this.lblPosition.Name = "lblPosition";
+            this.lblPosition.Size = new System.Drawing.Size(59, 13);
+            this.lblPosition.TabIndex = 19;
+            this.lblPosition.Text = "Phòng ban";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(518, 238);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(123, 31);
+            this.btnSave.TabIndex = 20;
+            this.btnSave.Text = "Thêm";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // FrmEmployeeDetail
             // 
@@ -231,6 +257,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.lblPosition);
+            this.Controls.Add(this.cboPosition);
+            this.Controls.Add(this.txtBirthday);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblGender);
@@ -238,7 +268,6 @@
             this.Controls.Add(this.radFemale);
             this.Controls.Add(this.txtSalary);
             this.Controls.Add(this.lblSalary);
-            this.Controls.Add(this.txtBirthday);
             this.Controls.Add(this.lblBrithday);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.lblAddress);
@@ -252,6 +281,7 @@
             this.Name = "FrmEmployeeDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmployeeDetail";
+            this.Load += new System.EventHandler(this.FrmEmployeeDetail_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,7 +297,6 @@
         private System.Windows.Forms.Label lblPhone;
         private Validates.TextboxValidate txtAddress;
         private System.Windows.Forms.Label lblAddress;
-        private Validates.TextboxValidate txtBirthday;
         private System.Windows.Forms.Label lblBrithday;
         private Validates.TextboxValidate txtSalary;
         private System.Windows.Forms.Label lblSalary;
@@ -276,5 +305,9 @@
         private System.Windows.Forms.Label lblGender;
         private Validates.TextboxValidate txtPassword;
         private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.DateTimePicker txtBirthday;
+        private System.Windows.Forms.ComboBox cboPosition;
+        private System.Windows.Forms.Label lblPosition;
+        private System.Windows.Forms.Button btnSave;
     }
 }
