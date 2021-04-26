@@ -45,7 +45,7 @@ namespace winform_project
         {
             btnEmployee.Select();
             panelRight.Controls.Clear();
-            FrmEmployeeList employeeList = new FrmEmployeeList
+            FrmEmployeeList employeeList = new FrmEmployeeList(Employee)
             {
                 TopLevel = false,
                 Dock = DockStyle.Fill

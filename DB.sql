@@ -178,6 +178,44 @@ EXEC sp_createEmployee @_name = N'Nhân Thị Viên',
 
 GO
 
+-- PROC xoá nhân viên
+CREATE PROC sp_deleteEmployee(
+    @_employee_id int,
+    @_outStt BIT = 1 OUTPUT,
+    @_outMsg NVARCHAR(200) = '' OUTPUT
+)
+AS
+BEGIN TRY
+    IF NOT EXISTS(SELECT name FROM Employees WHERE employee_id = @_employee_id)
+        BEGIN
+            SET @_outStt = 0;
+            SET @_outMsg = N'Nhân viên không tồn tại, vui lòng nhập lại';
+        END;
+    ELSE
+        BEGIN
+            BEGIN TRAN;
+
+            UPDATE Employees
+            SET status = 0
+            WHERE employee_id = @_employee_id
+
+            SET @_outStt = 1;
+            SET @_outMsg = N'Xoá nhân viên thành công';
+
+            IF @@TRANCOUNT > 0
+                COMMIT TRAN;
+        END;
+END TRY
+BEGIN CATCH
+    SET @_outStt = 0;
+    SET @_outMsg = N'Xoá không thành công: ' + ERROR_MESSAGE();
+
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRAN;
+END CATCH;
+
+GO
+
 -- Bảng Holidays (Ngày nghỉ)
 CREATE TABLE Holidays
 (
@@ -391,12 +429,6 @@ EXEC sp_loadSchedule @_employee_id = 2
 
 GO
 
--- First Day OF CURRENT MONTH.
-SELECT DATEADD(D, -(DAY(GETDATE() - 1)), GETDATE())
-
--- LAST DAY OF CURRENT MONTH.
-SELECT DATEADD(D, -(DAY(DATEADD(M, 1, GETDATE()))), DATEADD(M, 1, GETDATE()))
-
 -- Procedure lịch sử chấm công theo nhân viên
 CREATE PROC sp_getAllSchedulesByEmployeeId(
     @_employee_id int,
@@ -420,6 +452,7 @@ BEGIN
     WHERE employee_id = @_employee_id
       AND working_date >= @_FirstDayOfCurrentMonth
       AND working_date <= @_LastDayOfCurrentMonth
+    ORDER BY working_date DESC
 END
 
 GO

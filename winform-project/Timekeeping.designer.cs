@@ -166,6 +166,15 @@ namespace winform_project
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _employee_id, _working_month);
 			return ((ISingleResult<sp_countAllSchedulesByEmployeeIdResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_deleteEmployee")]
+		public int sp_deleteEmployee([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> _employee_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] ref System.Nullable<bool> _outStt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(200)")] ref string _outMsg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _employee_id, _outStt, _outMsg);
+			_outStt = ((System.Nullable<bool>)(result.GetParameterValue(1)));
+			_outMsg = ((string)(result.GetParameterValue(2)));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Approvals")]

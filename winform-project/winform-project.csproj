@@ -81,11 +81,41 @@
     <Compile Include="GUI\Employee\FrmEmployeeList.Designer.cs">
       <DependentUpon>FrmEmployeeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Holiday\FrmHolidayDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Holiday\FrmHolidayDetail.Designer.cs">
+      <DependentUpon>FrmHolidayDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Holiday\FrmHolidayList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Holiday\FrmHolidayList.Designer.cs">
+      <DependentUpon>FrmHolidayList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Position\FrmPositionDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Position\FrmPositionDetail.Designer.cs">
+      <DependentUpon>FrmPositionDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Position\FrmPositionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Position\FrmPositionList.Designer.cs">
+      <DependentUpon>FrmPositionList.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Profile\FrmProfile.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Profile\FrmProfile.Designer.cs">
       <DependentUpon>FrmProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Salary\FrmSalary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Salary\FrmSalary.Designer.cs">
+      <DependentUpon>FrmSalary.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Schedule\FrmSchedule.cs">
       <SubType>Form</SubType>
@@ -118,6 +148,9 @@
     <Compile Include="Validates\TextboxValidate.Designer.cs">
       <DependentUpon>TextboxValidate.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\Employee\FrmEmployeeDetail.resx">
+      <DependentUpon>FrmEmployeeDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Employee\FrmEmployeeList.resx">
       <DependentUpon>FrmEmployeeList.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,8 +207,6 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GUI\Holiday\" />
-    <Folder Include="GUI\Position\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
