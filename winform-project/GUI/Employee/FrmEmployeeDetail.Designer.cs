@@ -70,6 +70,7 @@
             this.txtName.Pattern = null;
             this.txtName.Size = new System.Drawing.Size(247, 41);
             this.txtName.TabIndex = 1;
+            this.txtName.TextContent = "";
             // 
             // txtEmail
             // 
@@ -82,6 +83,7 @@
             this.txtEmail.Pattern = null;
             this.txtEmail.Size = new System.Drawing.Size(247, 41);
             this.txtEmail.TabIndex = 3;
+            this.txtEmail.TextContent = "";
             // 
             // lblEmail
             // 
@@ -103,6 +105,7 @@
             this.txtPhone.Pattern = null;
             this.txtPhone.Size = new System.Drawing.Size(247, 41);
             this.txtPhone.TabIndex = 5;
+            this.txtPhone.TextContent = "";
             // 
             // lblPhone
             // 
@@ -124,6 +127,7 @@
             this.txtAddress.Pattern = null;
             this.txtAddress.Size = new System.Drawing.Size(247, 41);
             this.txtAddress.TabIndex = 7;
+            this.txtAddress.TextContent = "";
             // 
             // lblAddress
             // 
@@ -154,6 +158,7 @@
             this.txtSalary.Pattern = null;
             this.txtSalary.Size = new System.Drawing.Size(169, 41);
             this.txtSalary.TabIndex = 11;
+            this.txtSalary.TextContent = "";
             // 
             // lblSalary
             // 
@@ -206,6 +211,7 @@
             this.txtPassword.Pattern = null;
             this.txtPassword.Size = new System.Drawing.Size(169, 41);
             this.txtPassword.TabIndex = 16;
+            this.txtPassword.TextContent = "";
             // 
             // lblPassword
             // 
@@ -250,6 +256,7 @@
             this.btnSave.TabIndex = 20;
             this.btnSave.Text = "Thêm";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FrmEmployeeDetail
             // 

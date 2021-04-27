@@ -23,14 +23,27 @@ namespace winform_project.GUI.Employee
 
         private void FrmEmployeeDetail_Load(object sender, EventArgs e)
         {
+            this.Text = "Thêm đổi nhân viên";
+            btnSave.Text = "Thêm";
+            txtName.TextContent = "";
+            txtEmail.TextContent = "";
+            txtPhone.TextContent = "";
+            txtAddress.TextContent = "";
+            txtPassword.TextContent = "";
+            txtSalary.TextContent = "";
+            //cboPosition.SelectedValue = Employee.position_id;
+            radMale.Checked = true;
+            radFemale.Checked = false;
+            txtBirthday.Value = DateTime.Now;
+
             if (EmployeeId != null)
             {
                 this.Text = "Sửa đổi nhân viên";
-                btnSave.Text = "";
+                btnSave.Text = "Sửa";
 
                 var Employee = tdc.Employees.FirstOrDefault(x => x.employee_id == EmployeeId);
 
-                if (Employee.avatar != null)
+                if (Employee != null)
                 {
                     //pbEmpPicture.Image = Image.FromStream(new MemoryStream(Employee.avatar.ToArray()));
 
@@ -53,12 +66,57 @@ namespace winform_project.GUI.Employee
             cboPosition.DataSource = (from p in tdc.Positions
                                       select new
                                       {
-                                          PosId = p.position_id,
+                                          PositionId = p.position_id,
                                           Name = p.name,
                                       }).ToList();
 
             cboPosition.DisplayMember = "Name";
-            cboPosition.ValueMember = "PosId";
+            cboPosition.ValueMember = "PositionId";
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            bool? result = null;
+            string message = "";
+
+            winform_project.Employee Employee = new winform_project.Employee();
+            Employee.name = txtName.TextContent;
+            Employee.email = txtEmail.TextContent;
+            Employee.phone = txtPhone.TextContent;
+            Employee.address = txtAddress.TextContent;
+            Employee.password = txtPassword.TextContent;
+            Employee.coefficients_salary = Double.Parse(txtSalary.TextContent);
+            Employee.position_id = (int)cboPosition.SelectedValue;
+            Employee.gender = radMale.Checked;
+            Employee.birthday = txtBirthday.Value;
+
+            if (EmployeeId != null)
+            {
+                tdc.sp_updateEmployee(EmployeeId, Employee.name, Employee.email, Employee.phone, Employee.password, Employee.address, Employee.birthday, Employee.gender, Employee.coefficients_salary, Employee.position_id,  ref result, ref message);
+
+                if (result == false)
+                {
+                    MessageBox.Show(message, "Có lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                tdc.sp_createEmployee(Employee.name, Employee.email, Employee.password, Employee.phone, Employee.address, Employee.birthday, Employee.gender, Employee.coefficients_salary, null, Employee.position_id, ref result, ref message);
+
+                if (result == false)
+                {
+                    MessageBox.Show(message, "Có lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(message, "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+            }
         }
     }
 }

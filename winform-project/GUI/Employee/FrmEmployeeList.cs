@@ -94,21 +94,21 @@ namespace winform_project.GUI.Employee
         {
             if (dgvEmployee.CurrentRow != null)
             {
-                winform_project.Employee selectedEmployee = (winform_project.Employee)dgvEmployee.CurrentRow.DataBoundItem;
+                int EmployeeId = (int)dgvEmployee.CurrentRow.Cells["EmployeeId"].Value;
                 bool? result = null;
                 string message = "";
 
-                DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn xóa nhân viên có tên: " + selectedEmployee.name, "Xóa nhân viên", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn xóa nhân viên có id: " + EmployeeId, "Xóa nhân viên", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    if (selectedEmployee.employee_id == Employee.employee_id)
+                    if (EmployeeId == Employee.employee_id)
                     {
                         MessageBox.Show("Tài khoản này hiên đang đăng nhập, không thể xóa", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        tdc.sp_deleteEmployee(selectedEmployee.employee_id, ref result, ref message);
+                        tdc.sp_deleteEmployee(EmployeeId, ref result, ref message);
 
                         if (result == false)
                         {
@@ -131,6 +131,13 @@ namespace winform_project.GUI.Employee
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            loadEmployees();
+        }
+
+        private void btnAddEmployee_Click(object sender, EventArgs e)
+        {
+            FrmEmployeeDetail frmEmployeeDetail = new FrmEmployeeDetail(null);
+            frmEmployeeDetail.ShowDialog();
             loadEmployees();
         }
     }

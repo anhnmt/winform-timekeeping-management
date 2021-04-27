@@ -133,4 +133,33 @@
     <Parameter Name="_outMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.sp_updatePosition" Method="sp_updatePosition">
+    <Parameter Name="_position_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_name" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="_basic_salary" Type="System.Double" DbType="Float" />
+    <Parameter Name="_outStt" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Parameter Name="_outMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_deletePosition" Method="sp_deletePosition">
+    <Parameter Name="_position_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_outStt" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Parameter Name="_outMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_updateEmployee" Method="sp_updateEmployee">
+    <Parameter Name="_employee_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_name" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="_email" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="_phone" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="_password" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="_address" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="_birthday" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="_gender" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="_coefficients_salary" Type="System.Double" DbType="Float" />
+    <Parameter Name="_position_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="_outStt" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Parameter Name="_outMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

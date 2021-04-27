@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using winform_project.GUI.Employee;
+using winform_project.GUI.Position;
 using winform_project.GUI.Profile;
 using winform_project.GUI.Schedule;
 
@@ -67,22 +68,32 @@ namespace winform_project
             panelRight.Controls.Add(emlpoyeeSchedule);
         }
 
-        private void btnProfile_Click(object sender, EventArgs e)
+        private void FrmMain_Load(object sender, EventArgs e)
         {
-            btnProfile.Select();
+            //btnProfile_Click(sender, e);
+            if (Employee.position_id == 1)
+            {
+                btnEmployee_Click(sender, e);
+            }
+            else
+            {
+                btnScheduler_Click(sender, e);
+                btnEmployee.Visible = false;
+                btnPosition.Visible = false;
+            }
+        }
+
+        private void btnPosition_Click(object sender, EventArgs e)
+        {
+            btnPosition.Select();
             panelRight.Controls.Clear();
-            FrmProfile frmProfile = new FrmProfile(Employee)
+            FrmPositionList frmPositionList = new FrmPositionList(Employee)
             {
                 TopLevel = false,
                 Dock = DockStyle.Fill
             };
-            frmProfile.Show();
-            panelRight.Controls.Add(frmProfile);
-        }
-
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
-            btnProfile_Click(sender, e);
+            frmPositionList.Show();
+            panelRight.Controls.Add(frmPositionList);
         }
     }
 }

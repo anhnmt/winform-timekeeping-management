@@ -62,7 +62,6 @@ END CATCH;
 GO
 
 EXEC sp_createPosition @_name = N'Giám đốc', @_basic_salary = 15000000
-EXEC sp_createPosition @_name = N'Quản lý', @_basic_salary = 8000000
 EXEC sp_createPosition @_name = N'Nhân viên', @_basic_salary = 5000000
 
 GO
@@ -148,23 +147,13 @@ END CATCH;
 GO
 
 EXEC sp_createEmployee @_name = N'Giám Văn Đốc',
-     @_email = 'sa@gmail.com',
+     @_email = 'admin@gmail.com',
      @_password = '123456',
      @_phone = '0987839382',
      @_address = N'Hà Nội',
      @_birthday = '1999-12-26',
      @_coefficients_salary = 5,
      @_position_id = 1
-
-
-EXEC sp_createEmployee @_name = N'Quản Văn Lý',
-     @_email = 'admin@gmail.com',
-     @_password = '123456',
-     @_phone = '0123456789',
-     @_address = N'Nha Trang',
-     @_birthday = '2004-12-14',
-     @_coefficients_salary = 3,
-     @_position_id = 2
 
 EXEC sp_createEmployee @_name = N'Nhân Thị Viên',
      @_email = 'user@gmail.com',
@@ -174,9 +163,155 @@ EXEC sp_createEmployee @_name = N'Nhân Thị Viên',
      @_birthday = '2000-12-01',
      @_gender = 0,
      @_coefficients_salary = 3,
-     @_position_id = 3
+     @_position_id = 2
 
 GO
+
+-- Thủ tục sửa đổi chức vụ
+CREATE PROC sp_updatePosition(
+    @_position_id INT,
+    @_name NVARCHAR(255),
+    @_basic_salary FLOAT,
+    @_outStt BIT = 1 OUTPUT,
+    @_outMsg NVARCHAR(200) = '' OUTPUT
+)
+AS
+BEGIN TRY
+    IF NOT EXISTS(SELECT position_id FROM Positions WHERE position_id = @_position_id)
+        BEGIN
+            SET @_outStt = 0;
+            SET @_outMsg = N'Chức vụ không tồn tại, vui lòng nhập lại';
+        END;
+    ELSE
+        IF EXISTS(SELECT [name] FROM Positions WHERE [name] = @_name AND position_id != @_position_id)
+            BEGIN
+                SET @_outStt = 0;
+                SET @_outMsg = N'Tên chức vụ đã được sử dụng';
+            END;
+        ELSE
+            BEGIN
+                BEGIN TRAN;
+                UPDATE Positions
+                SET [name]       = @_name,
+                    basic_salary = @_basic_salary
+                WHERE position_id = @_position_id;
+
+                SET @_outStt = 1;
+                SET @_outMsg = N'Cập nhật chức vụ thành công';
+
+                IF @@TRANCOUNT > 0
+                    COMMIT TRAN;
+            END;
+END TRY
+BEGIN CATCH
+    SET @_outStt = 0;
+    SET @_outMsg = N'Cập nhật chức vụ không thành công: ' + ERROR_MESSAGE();
+
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRAN;
+END CATCH;
+
+GO
+
+CREATE PROC sp_updateEmployee
+(
+	@_employee_id INT,
+    @_name NVARCHAR(255),
+    @_email VARCHAR(255),
+	@_phone VARCHAR(10),
+    @_password VARCHAR(255),
+    @_address NVARCHAR(255),
+    @_birthday DATE,
+	@_gender BIT,
+	@_coefficients_salary FLOAT,
+	@_position_id INT,
+	@_outStt BIT = 1 OUTPUT,
+    @_outMsg NVARCHAR(200) = '' OUTPUT
+)
+AS
+BEGIN TRY
+    IF EXISTS (SELECT email FROM Employees WHERE email = @_email and employee_id != @_employee_id)
+    BEGIN
+        SET @_outStt = 0;
+        SET @_outMsg = N'Email đã được sử dụng';
+    END;
+	ELSE IF EXISTS (SELECT phone FROM Employees WHERE phone = @_phone and employee_id != @_employee_id)
+    BEGIN
+        SET @_outStt = 0;
+        SET @_outMsg = N'Số điện thoại đã được sử dụng';
+    END;
+    ELSE
+    BEGIN
+        BEGIN TRAN;
+        UPDATE Employees
+		SET
+            [name] = @_name,
+			email = @_email,
+			phone = @_phone,
+			[password] = @_password,
+			[address] = @_address,
+			birthday = @_birthday,
+			gender = @_gender,
+			coefficients_salary = @_coefficients_salary,
+			position_id = @_position_id
+		WHERE employee_id = @_employee_id;
+
+        SET @_outStt = 1;
+        SET @_outMsg = N'Cập nhật nhân viên thành công';
+
+        IF @@TRANCOUNT > 0
+            COMMIT TRAN;
+    END;
+END TRY
+BEGIN CATCH
+    SET @_outStt = 0;
+    SET @_outMsg = N'Cập nhật nhân viên không thành công: ' + ERROR_MESSAGE();
+
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRAN;
+END CATCH;
+
+GO
+
+CREATE PROC sp_deletePosition
+(
+    @_position_id INT,
+    @_outStt BIT = 1 OUTPUT,
+    @_outMsg NVARCHAR(200) = '' OUTPUT
+)
+AS
+BEGIN TRY
+    IF EXISTS
+    (
+        SELECT P.position_id FROM Positions P
+        JOIN Employees E ON P.position_id = E.position_id
+        WHERE P.position_id = @_position_id
+    )
+    BEGIN
+        SET @_outStt = 0;
+        SET @_outMsg = N'Chức vụ này hiện có nhân viên, không thể xóa';
+    END;
+    ELSE
+    BEGIN
+        BEGIN TRAN;
+        DELETE Positions
+        WHERE position_id = @_position_id;
+
+        SET @_outStt = 1;
+        SET @_outMsg = N'Xoá thành công';
+        IF @@TRANCOUNT > 0
+            COMMIT TRAN;
+    END;
+END TRY
+BEGIN CATCH
+    SET @_outStt = 0;
+    SET @_outMsg = N'Xoá không thành công: ' + ERROR_MESSAGE();
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRAN;
+END CATCH;
+
+GO
+
 
 -- PROC xoá nhân viên
 CREATE PROC sp_deleteEmployee(

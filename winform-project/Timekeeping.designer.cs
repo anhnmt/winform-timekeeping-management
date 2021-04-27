@@ -175,6 +175,33 @@ namespace winform_project
 			_outMsg = ((string)(result.GetParameterValue(2)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_updatePosition")]
+		public int sp_updatePosition([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> _position_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string _name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> _basic_salary, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] ref System.Nullable<bool> _outStt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(200)")] ref string _outMsg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _position_id, _name, _basic_salary, _outStt, _outMsg);
+			_outStt = ((System.Nullable<bool>)(result.GetParameterValue(3)));
+			_outMsg = ((string)(result.GetParameterValue(4)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_deletePosition")]
+		public int sp_deletePosition([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> _position_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] ref System.Nullable<bool> _outStt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(200)")] ref string _outMsg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _position_id, _outStt, _outMsg);
+			_outStt = ((System.Nullable<bool>)(result.GetParameterValue(1)));
+			_outMsg = ((string)(result.GetParameterValue(2)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_updateEmployee")]
+		public int sp_updateEmployee([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> _employee_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string _name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(255)")] string _email, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string _phone, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(255)")] string _password, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string _address, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> _birthday, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> _gender, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> _coefficients_salary, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> _position_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] ref System.Nullable<bool> _outStt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(200)")] ref string _outMsg)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), _employee_id, _name, _email, _phone, _password, _address, _birthday, _gender, _coefficients_salary, _position_id, _outStt, _outMsg);
+			_outStt = ((System.Nullable<bool>)(result.GetParameterValue(10)));
+			_outMsg = ((string)(result.GetParameterValue(11)));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Approvals")]
